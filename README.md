@@ -1,2 +1,2 @@
 # cryptomarketpalace
-Website for tradiing cryptocurrencies
+Website for trading cryptocurrencies
