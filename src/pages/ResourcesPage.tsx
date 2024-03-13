@@ -1,9 +1,5 @@
 const ResourcesPage = () => {
-  return (
-    <div>
-      ResourcesPage
-    </div>
-  )
-}
+  return <div>ResourcesPage</div>;
+};
 
 export { ResourcesPage };

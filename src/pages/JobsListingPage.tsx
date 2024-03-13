@@ -1,9 +1,5 @@
 const JobsListingPage = () => {
-  return (
-    <div>
-      JobsListingPage
-    </div>
-  )
-}
+  return <div>JobsListingPage</div>;
+};
 
 export { JobsListingPage };

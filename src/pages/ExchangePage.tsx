@@ -1,9 +1,5 @@
 const ExchangePage = () => {
-  return (
-    <div>
-      ExchangePage
-    </div>
-  )
-}
+  return <div>ExchangePage</div>;
+};
 
 export { ExchangePage };

@@ -1,26 +1,43 @@
-import { ExchangePage } from "pages/ExchangePage";
-import { HomePage } from "pages/HomePage";
-import { JobsListingPage } from "pages/JobsListingPage";
-import { ResourcesPage } from "pages/ResourcesPage";
-import { createBrowserRouter } from "react-router-dom";
+import { Page } from 'components/page/Page';
+import { ExchangePage } from 'pages/ExchangePage';
+import { HomePage } from 'pages/HomePage';
+import { JobsListingPage } from 'pages/JobsListingPage';
+import { ResourcesPage } from 'pages/ResourcesPage';
+import { createBrowserRouter } from 'react-router-dom';
 
 const RouterConfig = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />
+    element: (
+      <Page>
+        <HomePage />
+      </Page>
+    ),
   },
   {
     path: '/exchange',
-    element: <ExchangePage />
+    element: (
+      <Page>
+        <ExchangePage />
+      </Page>
+    ),
   },
   {
     path: '/resources',
-    element: <ResourcesPage />
+    element: (
+      <Page>
+        <ResourcesPage />
+      </Page>
+    ),
   },
   {
     path: '/jobs',
-    element: <JobsListingPage />
-  }
+    element: (
+      <Page>
+        <JobsListingPage />
+      </Page>
+    ),
+  },
 ]);
 
 export { RouterConfig };
