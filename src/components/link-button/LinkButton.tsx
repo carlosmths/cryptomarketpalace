@@ -20,12 +20,12 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       to={href}
       {...rest}
       className={classNames(
-        'flex justify-center items-center py-3 px-5 rounded-lg',
+        'link-button flex justify-center items-center py-3 px-5 rounded-lg',
         {
           'bg-purple-600 text-white hover:bg-purple-800': variant === 'primary',
         },
         {
-          'border-2 border-solid border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800':
+          'border border-solid border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800':
             variant === 'secondary',
         },
         className

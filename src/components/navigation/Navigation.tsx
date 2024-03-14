@@ -1,6 +1,12 @@
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-const Navigation = () => {
+interface NavigationProps {
+  onLinkClick?: () => void;
+  className?: string;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ onLinkClick, className }) => {
   const links = [
     ['Home', '/'],
     ['Exchange', '/exchange'],
@@ -9,11 +15,18 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="flex gap-x-4" role="navigation">
+    <nav
+      className={classNames('navigation flex gap-x-4', className)}
+      role="navigation"
+    >
       {links.map(([title, url]) => (
         <Link
           to={url}
-          className="relative after:content-[''] after:h-1 after:bg-purple-600 after:absolute after:top-full after:w-full after:left-0 after:scale-0 hover:after:scale-100"
+          className={classNames(
+            'py-2 font-semibold',
+            'relative lg:after:content-[""] lg:after:h-1 lg:after:bg-purple-600 lg:after:absolute lg:after:top-full lg:after:w-full lg:after:left-0 lg:after:scale-0 lg:hover:after:scale-100'
+          )}
+          onClick={onLinkClick}
         >
           {title}
         </Link>
