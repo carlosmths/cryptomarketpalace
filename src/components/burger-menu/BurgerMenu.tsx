@@ -22,7 +22,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = (props) => {
         <div
           key={`burger-line-${iteration}`}
           className={classNames(
-            'burger-line overflow-hidden h-1 w-full bg-purple-600 border-r-2 relative origin-center transition-all duration-50 ease-in-out',
+            'burger-line overflow-hidden h-1 w-full bg-black border-r-2 relative origin-center transition-all duration-50 ease-in-out',
             { 'scale-0': isMenuOpen && (iteration === 0 || iteration === 2) }
           )}
         ></div>

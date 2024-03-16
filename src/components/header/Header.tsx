@@ -2,6 +2,7 @@ import { Container } from 'components/container/Container';
 import { LinkButton } from 'components/link-button/LinkButton';
 import { Navigation } from 'components/navigation/Navigation';
 import { ReactComponent as Logo } from 'assets/logo.svg';
+import { ReactComponent as LogoIcon } from 'assets/logo-icon.svg';
 import BurgerMenu from 'components/burger-menu/BurgerMenu';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
@@ -51,10 +52,11 @@ const Header = () => {
               : 'hidden items-center'
           )}
         >
+          <LogoIcon className={classNames(isMenuOpen ? 'h-14' : 'hidden')} />
           <hr
             className={classNames(
               isMenuOpen ? 'block' : 'hidden',
-              'w-full mt-16'
+              'w-full mt-4'
             )}
           />
           <Navigation
