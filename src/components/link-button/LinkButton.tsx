@@ -2,15 +2,19 @@ import classNames from 'classnames';
 import { AnchorHTMLAttributes } from 'react';
 import { Link } from 'react-router-dom';
 
+enum ButtonVariant {
+  primary = 'primary',
+  secondary = 'secondary',
+}
 interface LinkButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
-  variant?: 'primary' | 'secondary';
+  variant?: ButtonVariant;
   className?: string;
 }
 
 const LinkButton: React.FC<LinkButtonProps> = ({
   children,
-  variant = 'primary',
+  variant = ButtonVariant.primary,
   href,
   className,
   ...rest
@@ -22,11 +26,12 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       className={classNames(
         'link-button flex justify-center items-center py-3 px-5 rounded-lg',
         {
-          'bg-purple-600 text-white hover:bg-purple-800': variant === 'primary',
+          'bg-purple-600 text-white hover:bg-purple-800':
+            variant === ButtonVariant.primary,
         },
         {
           'border border-solid border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800':
-            variant === 'secondary',
+            variant === ButtonVariant.secondary,
         },
         className
       )}
@@ -36,4 +41,4 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   );
 };
 
-export { LinkButton };
+export { LinkButton, ButtonVariant };

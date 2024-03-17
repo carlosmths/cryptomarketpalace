@@ -1,11 +1,10 @@
 import { Container } from 'components/container/Container';
-import { LinkButton } from 'components/link-button/LinkButton';
+import { ButtonVariant, LinkButton } from 'components/link-button/LinkButton';
 import { Navigation } from 'components/navigation/Navigation';
-import { ReactComponent as Logo } from 'assets/logo.svg';
-import { ReactComponent as LogoIcon } from 'assets/logo-icon.svg';
 import BurgerMenu from 'components/burger-menu/BurgerMenu';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { MainLogo } from 'components/main-logo/MainLogo';
 
 const Header = () => {
   const BREAKPOINT_LG = 1024;
@@ -29,7 +28,7 @@ const Header = () => {
     <header className="header">
       <Container className="flex justify-between items-center py-4 gap-x-4 relative">
         <div className="logo-container w-auto h-full">
-          <Logo className="main-logo w-full h-full" />
+          <MainLogo className="main-logo w-full h-full" />
         </div>
         <BurgerMenu
           isMenuOpen={isMenuOpen}
@@ -52,7 +51,10 @@ const Header = () => {
               : 'hidden items-center'
           )}
         >
-          <LogoIcon className={classNames(isMenuOpen ? 'h-14' : 'hidden')} />
+          <MainLogo
+            className={classNames(isMenuOpen ? 'h-14' : 'hidden')}
+            iconOnly
+          />
           <hr
             className={classNames(
               isMenuOpen ? 'block' : 'hidden',
@@ -75,7 +77,11 @@ const Header = () => {
             <LinkButton href={''} onClick={closeMenu}>
               Login
             </LinkButton>
-            <LinkButton href={''} onClick={closeMenu} variant="secondary">
+            <LinkButton
+              href={''}
+              onClick={closeMenu}
+              variant={ButtonVariant.secondary}
+            >
               Register
             </LinkButton>
           </div>
