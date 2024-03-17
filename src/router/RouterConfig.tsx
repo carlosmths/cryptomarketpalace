@@ -9,7 +9,7 @@ const RouterConfig = createBrowserRouter([
   {
     path: '/',
     element: (
-      <Page>
+      <Page title="Home">
         <HomePage />
       </Page>
     ),
@@ -17,7 +17,7 @@ const RouterConfig = createBrowserRouter([
   {
     path: '/exchange',
     element: (
-      <Page>
+      <Page title="Exchange">
         <ExchangePage />
       </Page>
     ),
@@ -25,7 +25,7 @@ const RouterConfig = createBrowserRouter([
   {
     path: '/resources',
     element: (
-      <Page>
+      <Page title="Resources">
         <ResourcesPage />
       </Page>
     ),
@@ -33,7 +33,7 @@ const RouterConfig = createBrowserRouter([
   {
     path: '/jobs',
     element: (
-      <Page>
+      <Page title="Jobs">
         <JobsListingPage />
       </Page>
     ),
