@@ -8,10 +8,10 @@ const Footer: React.FC = () => {
     <footer className="footer bg-[#221A39] text-white">
       <Container className="py-16">
         <div className="flex flex-col lg:flex-row gap-4">
-          <div className="flex flex-col lg:w-8/12 items-start justify-center">
+          <div className="flex flex-col flex-1 items-start justify-center">
             <MainLogo theme={Theme.dark} className="h-14 max-w-full" />
           </div>
-          <div className="lg:w-4/12">
+          <div className="flex-1 max-w-xl">
             <NewsLetterForm />
           </div>
         </div>
