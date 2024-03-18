@@ -1,4 +1,4 @@
-import { Page } from 'components/page/Page';
+import { Page } from 'components/Page';
 import { ExchangePage } from 'pages/ExchangePage';
 import { HomePage } from 'pages/HomePage';
 import { JobsListingPage } from 'pages/JobsListingPage';

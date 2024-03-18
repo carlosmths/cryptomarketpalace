@@ -1,27 +1,23 @@
 import classNames from 'classnames';
-
-enum MainLogoTheme {
-  light = 'light',
-  dark = 'dark',
-}
+import { Theme } from 'types/sharedTypes';
 
 interface MainLogoProps {
-  theme?: MainLogoTheme;
+  theme?: Theme;
   className?: string;
   iconOnly?: boolean;
 }
 
 const MainLogo: React.FC<MainLogoProps> = ({
-  theme = MainLogoTheme.light,
+  theme = Theme.light,
   className,
   iconOnly,
 }) => {
   const logoStyle = {
-    fill: theme === MainLogoTheme.light ? '#9333EA' : '#FFFFFF',
+    fill: theme === Theme.light ? '#9333EA' : '#FFFFFF',
   };
   const textStyle = {
-    fill: MainLogoTheme.light ? '#000000' : '#ffffff',
-    stroke: MainLogoTheme.light ? '#000000' : '#ffffff',
+    fill: theme === Theme.light ? '#000000' : '#FFFFFF',
+    stroke: theme === Theme.light ? '#000000' : '#FFFFFF',
   };
 
   return iconOnly ? (
@@ -59,10 +55,10 @@ const MainLogo: React.FC<MainLogoProps> = ({
   ) : (
     <svg
       className={classNames(className)}
-      viewBox="0 0 274 45"
+      viewBox="0 0 263 40"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g transform="matrix(.9887 0 0 1 5.8488 2.9916)" data-v-0dd9719b="">
+      <g transform="matrix(0.9887000322341919, 0, 0, 1, 0.3489319980144501, 0.49150100350379944)">
         <g transform="translate(0)">
           <rect
             width="38.4"
@@ -108,4 +104,4 @@ const MainLogo: React.FC<MainLogoProps> = ({
   );
 };
 
-export { MainLogo, MainLogoTheme };
+export { MainLogo };

@@ -1,6 +1,6 @@
-import { Footer } from 'components/footer/Footer';
-import { Header } from 'components/header/Header';
-import { useEffect } from 'react';
+import { Footer } from 'components/Footer';
+import { Header } from 'components/Header';
+import React from 'react';
 
 interface PageProps {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({ children, title }) => {
-  useEffect(() => {
+  React.useEffect(() => {
     document.title = `CryptoMarketPalace - ${title}`;
   }, [title]);
 

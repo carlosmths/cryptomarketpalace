@@ -1,20 +1,20 @@
-import { Container } from 'components/container/Container';
-import { ButtonVariant, LinkButton } from 'components/link-button/LinkButton';
-import { Navigation } from 'components/navigation/Navigation';
-import BurgerMenu from 'components/burger-menu/BurgerMenu';
-import { useEffect, useState } from 'react';
+import { Container } from 'components/Container';
+import { ButtonVariant, Button } from 'components/Button';
+import { Navigation } from 'components/Navigation';
+import BurgerMenu from 'components/BurgerMenu';
+import React from 'react';
 import classNames from 'classnames';
-import { MainLogo } from 'components/main-logo/MainLogo';
+import { MainLogo } from 'components/MainLogo';
 
-const Header = () => {
+const Header: React.FC = () => {
   const BREAKPOINT_LG = 1024;
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuOnClick = () => setIsMenuOpen(!isMenuOpen);
 
   const closeMenu = () => setIsMenuOpen(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const mm = window.matchMedia(`(min-width: ${BREAKPOINT_LG}px)`);
     const handleResize = () => setIsMenuOpen(isMenuOpen && !mm.matches);
     mm.addEventListener('change', handleResize);
@@ -74,16 +74,16 @@ const Header = () => {
               'flex gap-4'
             )}
           >
-            <LinkButton href={''} onClick={closeMenu}>
+            <Button href={''} onClick={closeMenu}>
               Login
-            </LinkButton>
-            <LinkButton
+            </Button>
+            <Button
               href={''}
               onClick={closeMenu}
               variant={ButtonVariant.secondary}
             >
               Register
-            </LinkButton>
+            </Button>
           </div>
         </div>
       </Container>
