@@ -19,8 +19,9 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, className }) => {
       className={classNames('navigation flex gap-x-4', className)}
       role="navigation"
     >
-      {links.map(([title, url]) => (
+      {links.map(([title, url], index) => (
         <NavLink
+          key={`nav-link-${index}`}
           to={url}
           className={({ isActive }) =>
             classNames(

@@ -82,7 +82,7 @@ const Header: React.FC = () => {
               onClick={closeMenu}
               variant={ButtonVariant.secondary}
             >
-              Register
+              Sign Up
             </Button>
           </div>
         </div>

@@ -15,7 +15,7 @@ const Page: React.FC<PageProps> = ({ children, title }) => {
   return (
     <div className="page flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex flex-col flex-1">{children}</main>
       <Footer />
     </div>
   );

@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps<HTMLAnchorElement | HTMLButtonElement>> = ({
   ...rest
 }) => {
   const commonClasses = classNames(
-    'link-button flex justify-center items-center py-3 px-5 rounded-lg',
+    'link-button flex justify-center items-center py-4 px-6 lg:py-2 lg:px-4 rounded-lg box-border',
     variant === ButtonVariant.primary
       ? {
           'bg-purple-600 text-white hover:bg-purple-800': theme === Theme.light,
