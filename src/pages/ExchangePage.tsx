@@ -1,4 +1,4 @@
-const ExchangePage = () => {
+const ExchangePage: React.FC = () => {
   return <div>ExchangePage</div>;
 };
 

@@ -1,6 +1,6 @@
 import { Hero } from 'components/Hero';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
       <Hero

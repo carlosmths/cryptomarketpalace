@@ -5,7 +5,7 @@ import { Theme } from 'types/sharedTypes';
 
 enum HeroVariant {
   fullHeight = 'fullHeight',
-  simple = '',
+  simple = 'simple',
 }
 
 interface HeroProps {
@@ -32,8 +32,17 @@ const Hero: React.FC<HeroProps> = ({
       )}
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
-      <Container className="hero-content flex py-24 text-white h-full">
-        <div className="flex flex-col gap-8 w-full lg:w-6/12 min-w-min lg:pr-10">
+      <Container
+        className={classNames('hero-content flex py-24 text-white h-full', {
+          'justify-center': variant === HeroVariant.simple,
+        })}
+      >
+        <div
+          className={classNames('flex flex-col gap-8 w-full', {
+            'lg:w-6/12 min-w-min lg:pr-10': variant === HeroVariant.fullHeight,
+            'text-center': variant === HeroVariant.simple,
+          })}
+        >
           <h1>{title}</h1>
           <p>{subtitle}</p>
           {(primaryCta || secondaryCta) && (
@@ -52,4 +61,4 @@ const Hero: React.FC<HeroProps> = ({
   );
 };
 
-export { Hero };
+export { Hero, HeroVariant };
