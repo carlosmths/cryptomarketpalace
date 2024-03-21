@@ -20,7 +20,8 @@
   }
 
   h1,
-  h2 {
+  h2,
+  h6 {
     @apply font-bold;
   }
 
@@ -41,6 +42,13 @@
 
     li {
       @apply py-1;
+    }
+  }
+
+  p {
+    &.subheading {
+      @apply mb-2;
+      @apply font-semibold;
     }
   }
 

@@ -28,7 +28,7 @@ const ContentWithImage: React.FC<ContentWithimageProps> = ({
 }) => {
   const leftCol = (
     <>
-      {subHeading && <p className="font-semibold mb-4">{subHeading}</p>}
+      {subHeading && <p className="subheading">{subHeading}</p>}
       <h2>{title}</h2>
       <p>{text}</p>
       {children}
@@ -42,8 +42,9 @@ const ContentWithImage: React.FC<ContentWithimageProps> = ({
     <TwoColumnContainer
       leftCol={defaultImaagePos ? leftCol : rightCol}
       rightCol={defaultImaagePos ? rightCol : leftCol}
+      centerContent
       className={className}
-    ></TwoColumnContainer>
+    />
   );
 };
 
