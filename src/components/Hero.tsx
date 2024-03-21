@@ -28,7 +28,7 @@ const Hero: React.FC<HeroProps> = ({
   return (
     <div
       className={classNames(
-        'hero flex flex-1 items-center bg-no-repeat bg-cover bg-right-bottom bg-black/50 bg-blend-darken'
+        'hero flex flex-1 min-h-[calc(100vh-20rem)] items-center bg-no-repeat bg-cover bg-right-bottom bg-black/50 bg-blend-darken'
       )}
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
     >
@@ -38,7 +38,7 @@ const Hero: React.FC<HeroProps> = ({
         })}
       >
         <div
-          className={classNames('flex flex-col gap-8 w-full', {
+          className={classNames('w-full', {
             'lg:w-6/12 min-w-min lg:pr-10': variant === HeroVariant.fullHeight,
             'text-center': variant === HeroVariant.simple,
           })}

@@ -7,16 +7,16 @@ const Footer: React.FC = () => {
   return (
     <footer className="footer bg-[#221A39] text-white">
       <Container className="py-16">
-        <div className="flex flex-col lg:flex-row gap-4">
-          <div className="flex flex-col flex-1 items-start justify-center">
+        <div className="flex flex-col lg:flex-row gap-x-24 gap-y-4">
+          <div className="flex flex-col lg:w-6/12 items-start justify-center">
             <MainLogo theme={Theme.dark} className="h-14 max-w-full" />
           </div>
-          <div className="flex-1 max-w-xl">
+          <div className="lg:w-6/12">
             <NewsLetterForm />
           </div>
         </div>
         <hr className="my-16" />
-        <div className="">
+        <div>
           <p>
             Copyright © 2024 CryptoMarketPalace (Fictitious). All rights
             reserved.
