@@ -21,6 +21,7 @@
 
   h1,
   h2,
+  h3,
   h6 {
     @apply font-bold;
   }
@@ -50,6 +51,12 @@
       @apply mb-2;
       @apply font-semibold;
     }
+  }
+
+  .skeleton-loading {
+    @apply bg-gray-300;
+    @apply animate-pulse;
+    @apply rounded-lg;
   }
 
   @screen lg {

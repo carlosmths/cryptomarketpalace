@@ -35,7 +35,9 @@ const ContentWithImage: React.FC<ContentWithimageProps> = ({
     </>
   );
 
-  const rightCol = <img src={imagePath} alt={imageAlt} />;
+  const rightCol = (
+    <img className="rounded-2xl" src={imagePath} alt={imageAlt} />
+  );
   const defaultImaagePos = imagePosition === ImagePosition.default;
 
   return (
