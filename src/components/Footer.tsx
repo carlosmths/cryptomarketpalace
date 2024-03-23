@@ -1,15 +1,20 @@
 import { Container } from 'components/Container';
 import { MainLogo } from 'components/MainLogo';
 import { NewsLetterForm } from 'components/NewsLetterForm';
+import { SocialMedia } from 'components/SocialMedia';
 import { Theme } from 'types/sharedTypes';
 
 const Footer: React.FC = () => {
   return (
     <footer className="footer bg-[#221A39] text-white">
       <Container className="py-16">
-        <div className="flex flex-col lg:flex-row gap-x-24 gap-y-4">
-          <div className="flex flex-col lg:w-6/12 items-start justify-center">
+        <div className="flex flex-col lg:flex-row gap-x-24 gap-y-12">
+          <div className="flex flex-col lg:w-6/12 items-start justify-center gap-12">
             <MainLogo theme={Theme.dark} className="h-14 max-w-full" />
+            <div>
+              <h4>Community</h4>
+              <SocialMedia theme={Theme.dark} />
+            </div>
           </div>
           <div className="lg:w-6/12">
             <NewsLetterForm />
