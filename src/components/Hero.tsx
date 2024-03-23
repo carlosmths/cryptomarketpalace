@@ -47,9 +47,17 @@ const Hero: React.FC<HeroProps> = ({
           <p>{subtitle}</p>
           {(primaryCta || secondaryCta) && (
             <div className="buttons flex gap-4 items-center">
-              {primaryCta && <Button theme={Theme.dark}>{primaryCta}</Button>}
+              {primaryCta && (
+                <Button theme={Theme.dark} href="#">
+                  {primaryCta}
+                </Button>
+              )}
               {secondaryCta && (
-                <Button theme={Theme.dark} variant={ButtonVariant.secondary}>
+                <Button
+                  theme={Theme.dark}
+                  variant={ButtonVariant.secondary}
+                  href="#"
+                >
                   {secondaryCta}
                 </Button>
               )}

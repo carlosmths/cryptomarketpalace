@@ -74,11 +74,11 @@ const Header: React.FC = () => {
               'flex gap-4'
             )}
           >
-            <Button href={''} onClick={closeMenu}>
+            <Button href="#" onClick={closeMenu}>
               Login
             </Button>
             <Button
-              href={''}
+              href="#"
               onClick={closeMenu}
               variant={ButtonVariant.secondary}
             >

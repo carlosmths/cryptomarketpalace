@@ -1,10 +1,12 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Theme } from 'types/sharedTypes';
+import { ReactComponent as ArrowRight } from 'assets/arrow-right.svg';
 
 enum ButtonVariant {
   primary = 'primary',
   secondary = 'secondary',
+  next = 'next',
 }
 
 type ButtonTypes = HTMLAnchorElement | HTMLButtonElement;
@@ -18,6 +20,12 @@ interface ButtonProps<T extends ButtonTypes>
   type?: 'submit' | 'reset' | 'button';
 }
 
+const getIcon = (): React.ReactElement => (
+  <i className="flex items-center h-full w-4 ml-0.5">
+    <ArrowRight />
+  </i>
+);
+
 const Button: React.FC<ButtonProps<HTMLAnchorElement | HTMLButtonElement>> = ({
   children,
   variant = ButtonVariant.primary,
@@ -27,21 +35,27 @@ const Button: React.FC<ButtonProps<HTMLAnchorElement | HTMLButtonElement>> = ({
   ...rest
 }) => {
   const commonClasses = classNames(
-    'link-button flex justify-center items-center py-4 px-6 lg:py-2 lg:px-4 rounded-lg box-border',
-    variant === ButtonVariant.primary
-      ? {
-          'bg-purple-600 text-white hover:bg-purple-800': theme === Theme.light,
-          'bg-white text-purple-950 hover:bg-gray-200': theme === Theme.dark,
-        }
-      : [
-          'border border-solid',
-          {
-            'border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800':
-              theme === Theme.light,
-            'border-white bg-transparent hover:border-gray-400 hover:text-gray-400':
-              theme === Theme.dark,
-          },
-        ],
+    'link-button flex justify-center items-center py-4 px-6 lg:py-3 lg:px-5 rounded-lg box-border',
+    variant === ButtonVariant.primary && {
+      'bg-purple-600 text-white hover:bg-purple-800': theme === Theme.light,
+      'bg-white text-purple-950 hover:bg-gray-200': theme === Theme.dark,
+    },
+    variant === ButtonVariant.secondary && [
+      'border border-solid',
+      {
+        'border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800':
+          theme === Theme.light,
+        'border-white bg-transparent hover:border-gray-400 hover:text-gray-400':
+          theme === Theme.dark,
+      },
+    ],
+    variant === ButtonVariant.next && [
+      'flex items-center border-none',
+      {
+        'hover:text-purple-800': theme === Theme.light,
+        'text-white hover:text-gray-200': theme === Theme.dark,
+      },
+    ],
     className
   );
 
@@ -49,12 +63,14 @@ const Button: React.FC<ButtonProps<HTMLAnchorElement | HTMLButtonElement>> = ({
     return (
       <Link to={href} {...rest} className={commonClasses}>
         {children}
+        {variant === ButtonVariant.next && getIcon()}
       </Link>
     );
   }
   return (
     <button {...rest} className={commonClasses}>
       {children}
+      {variant === ButtonVariant.next && getIcon()}
     </button>
   );
 };

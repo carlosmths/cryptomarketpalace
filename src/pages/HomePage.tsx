@@ -1,3 +1,4 @@
+import { Button, ButtonVariant } from 'components/Button';
 import { ContentWithImage, ImagePosition } from 'components/ContentWithImage';
 import { Hero } from 'components/Hero';
 import { StepsList } from 'components/StepsList';
@@ -14,7 +15,7 @@ const HomePage: React.FC = () => {
         primaryCta="Sign Up"
         secondaryCta="Learn More"
       />
-      <section>
+      <section className="bg-arrow-right font-display">
         <TwoColumnContainer
           centerContent
           leftCol={
@@ -63,6 +64,12 @@ const HomePage: React.FC = () => {
             <>
               <p className="subheading">Simplified</p>
               <h2>Easy Steps to Buy and Sell Cryptocurrencies</h2>
+              <div className="flex">
+                <Button href="#">Get Started</Button>
+                <Button href="#" variant={ButtonVariant.next}>
+                  Learn More
+                </Button>
+              </div>
             </>
           }
           rightCol={
