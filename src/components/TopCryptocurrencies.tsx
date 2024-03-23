@@ -31,17 +31,17 @@ const logosMap: {
   solana: SolanaLogo,
 };
 
-const getLogo = (id: string): JSX.Element => {
-  const Logo = logosMap[id];
-  return <Logo className="h-full" />;
-};
-
 const TopCryptocurrencies: React.FC = () => {
   const [currencies, setCurrencies] = React.useState<
     CurrenciesApiResponse[] | null
   >(null);
 
   const [isLoading, setIsLoading] = React.useState(true);
+
+  const getLogo = (id: string): JSX.Element => {
+    const Logo = logosMap[id];
+    return <Logo className="h-full" />;
+  };
 
   const fetchData = async () => {
     const ids = Object.keys(logosMap).join(',');
