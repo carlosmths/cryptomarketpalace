@@ -1,60 +1,56 @@
 import classNames from 'classnames';
 import React from 'react';
-import axios from 'axios';
-import BitcoinLogo from 'assets/bitcoin.svg?react';
-import BnbLogo from 'assets/bnb.svg?react';
-import EthereumLogo from 'assets/ethereum.svg?react';
-import SolanaLogo from 'assets/solana.svg?react';
-import TetherLogo from 'assets/tether.svg?react';
+import axios, { AxiosResponse } from 'axios';
 
-interface CurrenciesApiResponse {
+type CryptoCurrency = {
   id: string;
   rank: string;
   symbol: string;
   name: string;
   supply: string;
-  maxSupply: string;
+  maxSupply: string | null;
   marketCapUsd: string;
   volumeUsd24Hr: string;
   priceUsd: string;
   changePercent24Hr: string;
   vwap24Hr: string;
-}
-
-const logosMap: {
-  [key: string]: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-} = {
-  bitcoin: BitcoinLogo,
-  ethereum: EthereumLogo,
-  tether: TetherLogo,
-  'binance-coin': BnbLogo,
-  solana: SolanaLogo,
+  explorer: string;
+  logoUrl?: string;
 };
 
-const TopCryptocurrencies: React.FC = () => {
-  const [currencies, setCurrencies] = React.useState<
-    CurrenciesApiResponse[] | null
-  >(null);
+type ApiResponse = {
+  data: CryptoCurrency[];
+  timestamp: number;
+};
 
+interface TopCryptocurrenciesProps {
+  limit: number;
+}
+
+const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
+  const [currencies, setCurrencies] = React.useState<CryptoCurrency[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  const getLogo = (id: string): JSX.Element => {
-    const Logo = logosMap[id];
-    return <Logo className="h-full" />;
+  const handleCurrenciesData = (cryptocurrencies: CryptoCurrency[]) => {
+    const withMappedImages = cryptocurrencies.map((crypto) => {
+      crypto.logoUrl = `https://assets.coincap.io/assets/icons/${crypto.symbol}@2x.png`;
+      return crypto;
+    });
+    setCurrencies([...withMappedImages]);
+    return withMappedImages;
   };
 
   const fetchData = async () => {
-    const ids = Object.keys(logosMap).join(',');
+    console.log('FETCHING DATA');
     try {
-      const response = await axios(
-        `https://api.coincap.io/v2/assets?ids=${ids}`
+      const response: AxiosResponse<ApiResponse> = await axios<ApiResponse>(
+        `https://api.coincap.io/v2/assets?limit=${limit}`
       );
       if (!response) {
         throw new Error('Network response was not ok');
       }
-      const jsonData = await response.data;
-      setCurrencies([...jsonData.data]);
-
+      const apiResponse = await response.data;
+      const updatedCurrencies = handleCurrenciesData(apiResponse.data);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -64,18 +60,17 @@ const TopCryptocurrencies: React.FC = () => {
   const getFixedValue = (value: string): string => Number(value).toFixed(2);
 
   React.useEffect(() => {
-    const interval = setInterval(fetchData, 3000);
     fetchData();
-
+    const interval = setInterval(fetchData, 3000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="top-cryptocurrencies">
       {isLoading
-        ? Object.keys(logosMap).map((cryptoName) => (
+        ? Array.from({ length: limit }).map((_, index) => (
             <div
-              key={`skeleton-${cryptoName}`}
+              key={`skeleton-${index}`}
               className="flex justify-between mb-2 items-center"
             >
               <div className="flex gap-x-2 w-6/12 items-center">
@@ -93,7 +88,7 @@ const TopCryptocurrencies: React.FC = () => {
             >
               <div className="flex items-center gap-x-2 w-6/12">
                 <span className="flex items-center justify-center w-10 h-10">
-                  {getLogo(currency.id)}
+                  <img src={currency.logoUrl?.toLowerCase()}></img>
                 </span>
                 <span>
                   {currency.name} {`(${currency.symbol})`}

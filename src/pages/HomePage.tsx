@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
           rightCol={
             <>
               <h3>Top 5 cryptocurrencies</h3>
-              <TopCryptocurrencies />
+              <TopCryptocurrencies limit={5} />
             </>
           }
         />
