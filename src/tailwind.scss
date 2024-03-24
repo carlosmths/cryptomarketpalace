@@ -165,11 +165,14 @@
   }
 
   ul {
-    list-style-image: url('assets/bullet-point.png');
-    @apply pl-[1.3rem];
+    @apply pl-[1.3rem] list-none;
 
     li {
-      @apply py-1;
+      @apply py-1 relative flex items-center;
+
+      &:before {
+        @apply content-[''] bg-[url('assets/bullet-point.png')] bg-no-repeat bg-center absolute h-full w-3 left-[-1.3rem];
+      }
     }
   }
 
