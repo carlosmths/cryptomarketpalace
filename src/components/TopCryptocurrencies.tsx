@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import React from 'react';
 import axios from 'axios';
-import { ReactComponent as BitcoinLogo } from 'assets/bitcoin.svg';
-import { ReactComponent as BnbLogo } from 'assets/bnb.svg';
-import { ReactComponent as EthereumLogo } from 'assets/ethereum.svg';
-import { ReactComponent as SolanaLogo } from 'assets/solana.svg';
-import { ReactComponent as TetherLogo } from 'assets/tether.svg';
+import BitcoinLogo from 'assets/bitcoin.svg?react';
+import BnbLogo from 'assets/bnb.svg?react';
+import EthereumLogo from 'assets/ethereum.svg?react';
+import SolanaLogo from 'assets/solana.svg?react';
+import TetherLogo from 'assets/tether.svg?react';
 
 interface CurrenciesApiResponse {
   id: string;

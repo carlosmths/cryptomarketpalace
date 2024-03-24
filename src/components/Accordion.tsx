@@ -1,5 +1,5 @@
-import { ReactComponent as Plus } from 'assets/plus.svg';
-import { ReactComponent as Minus } from 'assets/minus.svg';
+import Plus from 'assets/plus.svg?react';
+import Minus from 'assets/minus.svg?react';
 import React from 'react';
 import classNames from 'classnames';
 

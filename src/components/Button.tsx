@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Theme } from 'types/sharedTypes';
-import { ReactComponent as ArrowRight } from 'assets/arrow-right.svg';
+import ArrowRight from 'assets/arrow-right.svg?react';
 
 enum ButtonVariant {
   primary = 'primary',

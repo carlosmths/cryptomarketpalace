@@ -1,9 +1,9 @@
-import { ReactComponent as IconFb } from 'assets/icon-fb.svg';
-import { ReactComponent as IconInstagram } from 'assets/icon-instagram.svg';
-import { ReactComponent as IconPinterest } from 'assets/icon-pinterest.svg';
-import { ReactComponent as IconReddit } from 'assets/icon-reddit.svg';
-import { ReactComponent as IconX } from 'assets/icon-x.svg';
-import { ReactComponent as IconYoutube } from 'assets/icon-youtube.svg';
+import IconFb from 'assets/icon-fb.svg?react';
+import IconInstagram from 'assets/icon-instagram.svg?react';
+import IconPinterest from 'assets/icon-pinterest.svg?react';
+import IconReddit from 'assets/icon-reddit.svg?react';
+import IconX from 'assets/icon-x.svg?react';
+import IconYoutube from 'assets/icon-youtube.svg?react';
 import classNames from 'classnames';
 import { Theme } from 'types/sharedTypes';
 
