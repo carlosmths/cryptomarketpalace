@@ -27,9 +27,9 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <Container className="flex justify-between items-center py-4 gap-x-4 relative">
-        <div className="logo-container w-auto h-full">
+        <a className="w-auto h-full" href="/">
           <MainLogo className="main-logo w-full h-full" />
-        </div>
+        </a>
         <BurgerMenu
           isMenuOpen={isMenuOpen}
           onClick={menuOnClick}
