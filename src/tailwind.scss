@@ -142,8 +142,7 @@
   }
 
   body {
-    @apply text-sm;
-    @apply font-montserrat;
+    @apply text-sm font-montserrat;
   }
 
   h1,
@@ -178,15 +177,13 @@
 
   p {
     &.subheading {
-      @apply mb-2;
-      @apply font-semibold;
+      @apply mb-2 font-semibold;
     }
   }
 
-  .skeleton-loading {
-    @apply bg-gray-300;
-    @apply animate-pulse;
-    @apply rounded-lg;
+  img {
+    max-height: 100%;
+    width: auto;
   }
 
   @screen lg {
@@ -195,8 +192,7 @@
     }
 
     h1 {
-      @apply text-5xl;
-      @apply font-bold;
+      @apply text-5xl font-bold;
     }
 
     h2 {
@@ -206,5 +202,15 @@
     h3 {
       @apply text-3xl;
     }
+  }
+}
+
+@layer utilities {
+  .skeleton-loading {
+    @apply bg-gray-300  animate-pulse rounded-lg;
+  }
+
+  .focusable-input {
+    @apply outline outline-1 outline-slate-950;
   }
 }

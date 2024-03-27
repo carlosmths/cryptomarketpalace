@@ -41,7 +41,6 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
   };
 
   const fetchData = async () => {
-    console.log('FETCHING DATA');
     try {
       const response: AxiosResponse<ApiResponse> = await axios<ApiResponse>(
         `https://api.coincap.io/v2/assets?limit=${limit}`
@@ -50,7 +49,7 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
         throw new Error('Network response was not ok');
       }
       const apiResponse = await response.data;
-      const updatedCurrencies = handleCurrenciesData(apiResponse.data);
+      handleCurrenciesData(apiResponse.data);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);

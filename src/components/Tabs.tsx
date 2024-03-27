@@ -21,7 +21,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, className }) => {
   return (
     <div
       className={classNames(
-        'tabs-container border border-purple-600 rounded-xl p-4 bg-purple-50',
+        'tabs-container border border-purple-600 rounded-xl p-6 bg-purple-50',
         className
       )}
     >
