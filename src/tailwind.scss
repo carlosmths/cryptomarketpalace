@@ -173,6 +173,16 @@
         @apply content-[''] bg-[url('assets/bullet-point.png')] bg-no-repeat bg-center absolute h-full w-3 left-[-1.3rem];
       }
     }
+
+    &.list-none-custom {
+      @apply list-none pl-0;
+
+      li {
+        &:before {
+          @apply content-none;
+        }
+      }
+    }
   }
 
   p {

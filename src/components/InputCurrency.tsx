@@ -3,6 +3,9 @@ import { Image } from 'components/Image';
 import React from 'react';
 import MissingFlag from 'assets/missing-flag.svg';
 import ArrowDown from 'assets/arrow-down.svg?react';
+import { SearchableList } from 'components/SearchableList';
+import classNames from 'classnames';
+import { kebabToNormal } from 'utilities/stringUtils';
 
 enum CurrencyType {
   fiat = 'fiat',
@@ -11,6 +14,7 @@ enum CurrencyType {
 
 interface Currency {
   id: string;
+  name: string;
   symbol: string;
   currencySymbol: null | string;
   type: 'fiat' | 'crypto';
@@ -23,16 +27,21 @@ interface ApiResponse {
   timestamp: number;
 }
 
-interface InputCurrencyProps {
+interface InputCurrencyProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   currencyType: CurrencyType;
 }
 
-const InputCurrency: React.FC<InputCurrencyProps> = ({ currencyType }) => {
+const InputCurrency: React.FC<InputCurrencyProps> = ({
+  currencyType,
+  ...inputProps
+}) => {
   const [currencies, setCurrencies] = React.useState<Currency[]>([]);
   const [selectedCurrency, setSelectedCurrency] = React.useState<
     Currency | undefined
   >();
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
 
   const setLogos = (currencies: Currency[]) => {
     return currencies.map((currency) => {
@@ -40,6 +49,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({ currencyType }) => {
         currency.type === 'crypto'
           ? `https://assets.coincap.io/assets/icons/${currency.symbol}@2x.png`
           : `https://wise.com/public-resources/assets/flags/rectangle/${currency.symbol}.png`;
+      currency.name = kebabToNormal(currency.id);
       return currency;
     });
   };
@@ -59,12 +69,16 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({ currencyType }) => {
         'https://api.coincap.io/v2/rates'
       );
       const apiResponse = await response.data;
-      const newCurrencies = apiResponse.data;
+      const newCurrencies = apiResponse.data.filter(
+        (currency) => currency.type === currencyType
+      );
       const currenciesWithLogos = setLogos(newCurrencies);
       setDefaultCurrency(currenciesWithLogos);
       setCurrencies([...currenciesWithLogos]);
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -75,48 +89,74 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({ currencyType }) => {
     parentClasses?.toggle('focusable-input');
   };
 
+  const renderListItem = (currency: Currency): React.ReactNode => {
+    return (
+      <>
+        <Image
+          key={currency.id}
+          src={currency.logoUrl?.toLowerCase() || ''}
+          alt=""
+          fallbackSrc={MissingFlag}
+          className="w-7"
+        />
+        <div className="w-16">{currency.symbol}</div>
+        <div>{currency.name}</div>
+      </>
+    );
+  };
+
+  const handleDropdownClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleListItemClick = (currency: Currency) => {
+    setSelectedCurrency({ ...currency });
+    setIsMenuOpen(false);
+  };
+
   React.useEffect(() => {
     fetchRates();
   }, []);
 
   return (
-    <div className="input-currency">
+    <div className="input-currency relative">
       <div className="flex items-center gap-x-3 bg-white px-3 rounded-lg hover:outline hover:outline-1 hover:outline-slate-950">
         <input
           type="text"
           className="w-full py-3 border-none outline-none"
-          onFocus={(e) => handleParentFocus(e)}
-          onBlur={(e) => handleParentFocus(e)}
+          onFocus={handleParentFocus}
+          onBlur={handleParentFocus}
+          {...inputProps}
         ></input>
-        <div
-          className="flex items-center w-28 h-6 gap-x-2 font-bold cursor-pointer"
-          tabIndex={0}
-          onFocus={(e) => handleParentFocus(e)}
-          onBlur={(e) => handleParentFocus(e)}
-        >
-          <Image
-            key={selectedCurrency?.id}
-            src={selectedCurrency?.logoUrl?.toLowerCase() || ''}
-            alt=""
-            fallbackSrc={MissingFlag}
-            className="w-6"
-          />
-          <span className="flex-1">{selectedCurrency?.symbol}</span>
-          <ArrowDown className="w-2 h-full" />
-        </div>
+        {isLoading ? (
+          <div className="skeleton-loading w-28 h-6"></div>
+        ) : (
+          <div
+            className="flex items-center w-28 h-6 gap-x-2 font-bold cursor-pointer"
+            tabIndex={0}
+            onClick={handleDropdownClick}
+          >
+            <Image
+              key={selectedCurrency?.id}
+              src={selectedCurrency?.logoUrl?.toLowerCase() || ''}
+              alt=""
+              fallbackSrc={MissingFlag}
+              className="w-6"
+            />
+            <span className="flex-1">{selectedCurrency?.symbol}</span>
+            <ArrowDown className="w-2 h-full" />
+          </div>
+        )}
       </div>
-      {currencies.map((currency) => (
-        <div key={currency.id} className="flex py-4 hidden">
-          <Image
-            key={currency.id}
-            src={currency.logoUrl?.toLowerCase() || ''}
-            alt=""
-            fallbackSrc={MissingFlag}
-          />
-          <div>{currency.symbol}</div>
-          <div>{currency.id}</div>
-        </div>
-      ))}
+      <SearchableList
+        items={currencies}
+        renderItem={renderListItem}
+        onElementClick={handleListItemClick}
+        className={classNames(
+          'h-96 w-full z-10 rounded-lg border border-solid border-purple-950 bg-white overflow-y-auto absolute top-14',
+          isMenuOpen ? 'block' : 'hidden'
+        )}
+      />
     </div>
   );
 };
