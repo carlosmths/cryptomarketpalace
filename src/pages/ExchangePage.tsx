@@ -1,6 +1,5 @@
-import { BuyForm } from 'components/BuyForm';
+import { BuySellForm, BuySellType } from 'components/BuySellForm';
 import { Container } from 'components/Container';
-import { SellForm } from 'components/SellForm';
 import { Tabs } from 'components/Tabs';
 
 const ExchangePage: React.FC = () => {
@@ -11,11 +10,11 @@ const ExchangePage: React.FC = () => {
           tabs={[
             {
               title: 'Buy',
-              content: <BuyForm />,
+              content: <BuySellForm type={BuySellType.buy} />,
             },
             {
               title: 'Sell',
-              content: <SellForm />,
+              content: <BuySellForm type={BuySellType.sell} />,
             },
           ]}
           className="max-w-xl mx-auto"

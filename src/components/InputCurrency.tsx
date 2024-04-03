@@ -1,86 +1,30 @@
-import axios, { AxiosResponse } from 'axios';
 import { Image } from 'components/Image';
 import React from 'react';
 import MissingFlag from 'assets/missing-flag.svg';
 import ArrowDown from 'assets/arrow-down.svg?react';
 import { SearchableList } from 'components/SearchableList';
 import classNames from 'classnames';
-import { kebabToNormal } from 'utilities/stringUtils';
-
-enum CurrencyType {
-  fiat = 'fiat',
-  crypto = 'crypto',
-}
-
-interface Currency {
-  id: string;
-  name: string;
-  symbol: string;
-  currencySymbol: null | string;
-  type: 'fiat' | 'crypto';
-  rateUsd: string;
-  logoUrl?: string;
-}
-
-interface ApiResponse {
-  data: Currency[];
-  timestamp: number;
-}
+import { Currency, CurrencyType } from 'components/BuySellForm';
 
 interface InputCurrencyProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  currencies: Currency[];
   currencyType: CurrencyType;
+  selectedCurrency?: Currency;
+  isLoading: boolean;
+  onCurrencySelect: (currency: Currency, type: CurrencyType) => void;
 }
 
 const InputCurrency: React.FC<InputCurrencyProps> = ({
+  currencies,
   currencyType,
+  onChange,
+  isLoading,
+  selectedCurrency,
+  onCurrencySelect,
   ...inputProps
 }) => {
-  const [currencies, setCurrencies] = React.useState<Currency[]>([]);
-  const [selectedCurrency, setSelectedCurrency] = React.useState<
-    Currency | undefined
-  >();
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
-
-  const setLogos = (currencies: Currency[]) => {
-    return currencies.map((currency) => {
-      currency.logoUrl =
-        currency.type === 'crypto'
-          ? `https://assets.coincap.io/assets/icons/${currency.symbol}@2x.png`
-          : `https://wise.com/public-resources/assets/flags/rectangle/${currency.symbol}.png`;
-      currency.name = kebabToNormal(currency.id);
-      return currency;
-    });
-  };
-
-  const setDefaultCurrency = (currencies: Currency[]) => {
-    const defaultCurrency = currencies.find((currency) =>
-      currencyType === CurrencyType.crypto
-        ? currency.id === 'bitcoin'
-        : currency.id === 'united-states-dollar'
-    );
-    defaultCurrency && setSelectedCurrency({ ...defaultCurrency });
-  };
-
-  const fetchRates = async () => {
-    try {
-      const response: AxiosResponse<ApiResponse> = await axios<ApiResponse>(
-        'https://api.coincap.io/v2/rates'
-      );
-      const apiResponse = await response.data;
-      const newCurrencies = apiResponse.data.filter(
-        (currency) => currency.type === currencyType
-      );
-      const currenciesWithLogos = setLogos(newCurrencies);
-      setDefaultCurrency(currenciesWithLogos);
-      setCurrencies([...currenciesWithLogos]);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleParentFocus = (
     e: React.FocusEvent<HTMLInputElement | HTMLDivElement, Element>
@@ -110,13 +54,9 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
   };
 
   const handleListItemClick = (currency: Currency) => {
-    setSelectedCurrency({ ...currency });
+    onCurrencySelect(currency, currencyType);
     setIsMenuOpen(false);
   };
-
-  React.useEffect(() => {
-    fetchRates();
-  }, []);
 
   return (
     <div className="input-currency relative">
@@ -126,6 +66,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
           className="w-full py-3 border-none outline-none"
           onFocus={handleParentFocus}
           onBlur={handleParentFocus}
+          onChange={onChange}
           {...inputProps}
         ></input>
         {isLoading ? (
@@ -161,4 +102,5 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
   );
 };
 
-export { InputCurrency, CurrencyType };
+export { InputCurrency };
+export type { Currency };
