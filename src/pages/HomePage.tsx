@@ -1,7 +1,7 @@
 import { Button, ButtonVariant } from 'components/Button';
 import { Container } from 'components/Container';
 import { ContentWithImage, ImagePosition } from 'components/ContentWithImage';
-import { Accordion } from 'components/Accordion';
+import { FaqAccordion } from 'components/FaqAccordion';
 import { Hero } from 'components/Hero';
 import { StepsList } from 'components/StepsList';
 import { TopCryptocurrencies } from 'components/TopCryptocurrencies';
@@ -105,7 +105,7 @@ const HomePage: React.FC = () => {
             Find answers to common questions about cryptocurrency trading on our
             exchange.
           </p>
-          <Accordion
+          <FaqAccordion
             faqs={[
               {
                 question: 'What is a cryptocurrency?',

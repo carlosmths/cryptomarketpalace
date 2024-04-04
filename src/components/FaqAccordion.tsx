@@ -3,16 +3,16 @@ import Minus from 'assets/minus.svg?react';
 import React from 'react';
 import classNames from 'classnames';
 
-interface AccordionDataType {
+interface FaqAccordionDataType {
   question: string;
   answer: string;
 }
 
-interface AccordionProps {
-  faqs: AccordionDataType[];
+interface FaqAccordionProps {
+  faqs: FaqAccordionDataType[];
 }
 
-const Accordion: React.FC<AccordionProps> = ({ faqs }) => {
+const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
   const [openMenu, setOpenMenu] = React.useState<Number>(-1);
 
   const clickHandler = (index: Number) => {
@@ -51,4 +51,4 @@ const Accordion: React.FC<AccordionProps> = ({ faqs }) => {
   );
 };
 
-export { Accordion };
+export { FaqAccordion };

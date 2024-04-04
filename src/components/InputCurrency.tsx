@@ -5,6 +5,7 @@ import ArrowDown from 'assets/arrow-down.svg?react';
 import { SearchableList } from 'components/SearchableList';
 import classNames from 'classnames';
 import { Currency, CurrencyType } from 'components/BuySellForm';
+import { handleParentFocus } from 'utilities/helpers';
 
 interface InputCurrencyProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -13,25 +14,20 @@ interface InputCurrencyProps
   selectedCurrency?: Currency;
   isLoading: boolean;
   onCurrencySelect: (currency: Currency, type: CurrencyType) => void;
+  onInputChange: (newValue: string, currency?: Currency) => void;
 }
 
 const InputCurrency: React.FC<InputCurrencyProps> = ({
   currencies,
   currencyType,
-  onChange,
   isLoading,
   selectedCurrency,
   onCurrencySelect,
+  onInputChange,
+  value,
   ...inputProps
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
-
-  const handleParentFocus = (
-    e: React.FocusEvent<HTMLInputElement | HTMLDivElement, Element>
-  ) => {
-    const parentClasses = e.target.parentElement?.classList;
-    parentClasses?.toggle('focusable-input');
-  };
 
   const renderListItem = (currency: Currency): React.ReactNode => {
     return (
@@ -58,15 +54,24 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
     setIsMenuOpen(false);
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onInputChange(e.target.value, selectedCurrency);
+  };
+
+  const getFilteredCurrencies = (): Currency[] => {
+    return currencies.filter((currency) => currency.type === currencyType);
+  };
+
   return (
     <div className="input-currency relative">
       <div className="flex items-center gap-x-3 bg-white px-3 rounded-lg hover:outline hover:outline-1 hover:outline-slate-950">
         <input
-          type="text"
+          type="number"
           className="w-full py-3 border-none outline-none"
           onFocus={handleParentFocus}
           onBlur={handleParentFocus}
-          onChange={onChange}
+          onChange={handleInputChange}
+          value={value}
           {...inputProps}
         ></input>
         {isLoading ? (
@@ -90,7 +95,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
         )}
       </div>
       <SearchableList
-        items={currencies}
+        items={getFilteredCurrencies()}
         renderItem={renderListItem}
         onElementClick={handleListItemClick}
         className={classNames(

@@ -1,5 +1,9 @@
 import classNames from 'classnames';
 import React from 'react';
+import Search from 'assets/search.svg?react';
+import { handleParentFocus } from 'utilities/helpers';
+import Close from 'assets/close.svg?react';
+import FileSearch from 'assets/file-search.svg?react';
 
 interface SearchableListItem {
   [key: string]: any;
@@ -31,29 +35,56 @@ const SearchableList: React.FC<SearchableListProps<any>> = ({
     return values.some((value) => value?.includes(searchTerm.toLowerCase()));
   });
 
+  const clearSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setSearchTerm('');
+  };
+
+  const onLiElementClick = (item: SearchableListItem) => {
+    setSearchTerm('');
+    onElementClick(item);
+  };
+
   return (
-    <div className={classNames(className)}>
-      <div className="p-4">
+    <div className={classNames('flex flex-col', className)}>
+      <div className="flex px-2 my-2 mx-4 items-center gap-x-2 rounded-lg outline outline-1 outline-slate-950">
+        <Search className="h-4" />
         <input
           type="text"
           placeholder="Search..."
-          className="h-8 w-full rounded-lg p-2 border border-solid border-black"
+          className="h-8 w-full outline-none"
           value={searchTerm}
+          onFocus={handleParentFocus}
+          onBlur={handleParentFocus}
           onChange={handleSearchChange}
         />
+        {searchTerm && (
+          <button onClick={clearSearch}>
+            <i>
+              <Close className="h-4 text-gray-800" />
+            </i>
+          </button>
+        )}
       </div>
-      <ul className="list-none-custom mb-0">
-        {filteredItems.map((item, index) => (
-          <li
-            className="h-10 cursor-pointer flex items-center gap-x-2 hover:bg-purple-50 hover:font-semibold px-4"
-            key={index}
-            onClick={() => onElementClick(item)}
-          >
-            {renderItem(item)}
-            <hr />
-          </li>
-        ))}
-      </ul>
+      {filteredItems.length > 0 ? (
+        <ul className="list-none-custom mb-0">
+          {filteredItems.map((item, index) => (
+            <li
+              className="h-10 cursor-pointer flex items-center gap-x-2 hover:bg-purple-50 hover:font-semibold px-4"
+              key={index}
+              onClick={() => onLiElementClick(item)}
+            >
+              {renderItem(item)}
+              <hr />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="no-results flex-1 flex flex-col gap-y-4 justify-center items-center">
+          <FileSearch className="h-12" />
+          <span>No results</span>
+        </div>
+      )}
     </div>
   );
 };

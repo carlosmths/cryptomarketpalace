@@ -2,6 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 import classNames from 'classnames';
 import { Button } from 'components/Button';
 import { InputCurrency } from 'components/InputCurrency';
+import { TradeDetails } from 'components/TradeDetails';
+import { debounce, random } from 'lodash';
 import React from 'react';
 import { kebabToNormal } from 'utilities/stringUtils';
 
@@ -43,6 +45,12 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
     Currency | undefined
   >();
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const [fiatValue, setFiatValue] = React.useState<string>('');
+  const [cryptoValue, setCryptoValue] = React.useState<string>('');
+  const [networkFee, setNetworkFee] = React.useState<string>('');
+  const [processingFee, setProcessingFee] = React.useState<string>('');
+  const networkFeePercentage = 4.5;
+  const processingFeeUsd = random(1.8, 2.6);
 
   const setLogos = (currencies: Currency[]) => {
     return currencies.map((currency) => {
@@ -63,10 +71,18 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
     });
   };
 
+  const clearValues = () => {
+    setCryptoValue('');
+    setFiatValue('');
+  };
+
   const onCurrencySelect = (currency: Currency, currencyType: CurrencyType) => {
-    currencyType === CurrencyType.fiat
-      ? setSelectedFiatCurrency({ ...currency })
-      : setSelectedCryptoCurrency({ ...currency });
+    if (currencyType === CurrencyType.fiat) {
+      setSelectedFiatCurrency({ ...currency });
+    } else {
+      setSelectedCryptoCurrency({ ...currency });
+    }
+    clearValues();
   };
 
   const fetchRates = async () => {
@@ -85,11 +101,57 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
     }
   };
 
+  const setConvertedCurrency = (newValue: string, currency: Currency) => {
+    const isFiat = currency.type === CurrencyType.fiat;
+    const selectedRateUsd = Number(
+      isFiat ? selectedCryptoCurrency?.rateUsd : selectedFiatCurrency?.rateUsd
+    );
+    const usdRate = Number(newValue) * Number(currency?.rateUsd);
+    // console.log('newValue', newValue, 'currency.rateUsd', currency?.rateUsd);
+    const networkFeeUsd = (usdRate * networkFeePercentage) / 100;
+    const totalValue = usdRate ? usdRate - processingFeeUsd - networkFeeUsd : 0;
+    const convertedValue = totalValue / selectedRateUsd;
+    isFiat
+      ? setCryptoValue(convertedValue.toFixed(5).toString())
+      : setFiatValue(convertedValue.toFixed(2).toString());
+    const networkFeeCurrency =
+      networkFeeUsd > 0
+        ? networkFeeUsd / Number(selectedFiatCurrency?.rateUsd)
+        : 0;
+    setNetworkFee(networkFeeCurrency.toFixed(2));
+    const processingFeeCurrency =
+      processingFeeUsd > 0
+        ? processingFeeUsd / Number(selectedFiatCurrency?.rateUsd)
+        : 0;
+    setProcessingFee(processingFeeCurrency.toFixed(2));
+    console.log(
+      'usdRate',
+      usdRate,
+      'convertedValue',
+      convertedValue,
+      'non-converted',
+      usdRate / selectedRateUsd,
+      'currency',
+      currency
+    );
+  };
+
+  const debouncedSetConvertedCurrency = React.useCallback(
+    debounce(setConvertedCurrency, 500),
+    [selectedCryptoCurrency, selectedFiatCurrency]
+  );
+
+  const onInputChange = (newValue: string, currency?: Currency) => {
+    if (!currency) return;
+    currency.type === CurrencyType.fiat
+      ? setFiatValue(newValue)
+      : setCryptoValue(newValue);
+    debouncedSetConvertedCurrency(newValue, currency);
+  };
+
   React.useEffect(() => {
     fetchRates();
   }, []);
-
-  const onInputChange = (e: React.ChangeEventHandler<HTMLInputElement>) => {};
 
   return (
     <form className="flex flex-col gap-5 h-96">
@@ -106,18 +168,31 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
           selectedCurrency={selectedFiatCurrency}
           currencyType={CurrencyType.fiat}
           onCurrencySelect={onCurrencySelect}
+          value={fiatValue}
+          onInputChange={onInputChange}
           isLoading={isLoading}
         />
         <InputCurrency
           key="crypto"
-          placeholder="10.00 - 10,000.00"
+          placeholder="0.00000"
           currencies={currencies}
           selectedCurrency={selectedCryptoCurrency}
           currencyType={CurrencyType.crypto}
           onCurrencySelect={onCurrencySelect}
+          value={cryptoValue}
+          onInputChange={onInputChange}
           isLoading={isLoading}
         />
       </div>
+      <TradeDetails
+        cryptoValue={cryptoValue}
+        fiatValue={fiatValue}
+        selectedCryptoCurrency={selectedCryptoCurrency}
+        selectedFiatCurrency={selectedFiatCurrency}
+        buySellType={type}
+        networkFee={networkFee}
+        processingFee={processingFee}
+      />
       <Button className="mt-auto">Continue</Button>
     </form>
   );

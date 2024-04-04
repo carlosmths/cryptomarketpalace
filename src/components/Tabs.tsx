@@ -29,7 +29,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, className }) => {
         {tabs.map((tab, index) => (
           <button
             key={index}
-            className={`tab cursor-pointer pb-4 px-6 uppercase ${
+            className={`tab cursor-pointer mb-1 py-2 px-6 uppercase ${
               index === activeTabIndex ? 'active text-purple-600' : ''
             }`}
             onClick={() => handleTabClick(index)}
