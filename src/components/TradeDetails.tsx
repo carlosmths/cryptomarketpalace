@@ -21,10 +21,12 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
   networkFee,
   processingFee,
 }) => {
-  const totalFiatValue = fiatValue ? Number(fiatValue) - Number(networkFee) - Number(processingFee) : 0;
+  const buyingFiatValue = fiatValue ? Number(fiatValue) - Number(networkFee) - Number(processingFee) : 0;
+  const sellingFiatValue = fiatValue ? Number(fiatValue) + Number(processingFee) : 0;
+  const isBuying = buySellType === BuySellType.buy;
 
   const getHeadLine = (): React.ReactNode => {
-    return buySellType === BuySellType.buy ? (
+    return isBuying ? (
       <>
         You'll get {cryptoValue || 0} {selectedCryptoCurrency?.symbol} for {selectedFiatCurrency?.currencySymbol}
         {fiatValue || 0}
@@ -36,6 +38,7 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
       </>
     );
   };
+
   return (
     <SimpleAccordion
       headline={getHeadLine()}
@@ -48,10 +51,10 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
             </span>
             <span>
               {selectedFiatCurrency?.currencySymbol}
-              {totalFiatValue}
+              {(isBuying ? buyingFiatValue : sellingFiatValue).toFixed(2)}
             </span>
           </div>
-          {buySellType === BuySellType.buy && (
+          {isBuying && (
             <div className="flex justify-between">
               <span>Network fee</span>
               <span>
@@ -64,6 +67,7 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
           <div className="flex justify-between">
             <span>Processing fee</span>
             <span>
+              {!isBuying && <>-</>}
               {selectedFiatCurrency?.currencySymbol}
               {processingFee}
             </span>
