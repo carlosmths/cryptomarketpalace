@@ -6,9 +6,7 @@ const ResourcesPage: React.FC = () => {
       <Hero
         variant={HeroVariant.simple}
         title={'Unlock the Potential'}
-        subtitle={
-          'Discover a wealth of information about blockchain, NFTs, and cryptocurrency mining.'
-        }
+        subtitle={'Discover a wealth of information about blockchain, NFTs, and cryptocurrency mining.'}
         backgroundImageUrl={'assets/bg-hero-resources.png'}
       />
     </>

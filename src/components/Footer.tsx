@@ -22,20 +22,15 @@ const Footer: React.FC = () => {
         </div>
         <hr className="my-16" />
         <div>
+          <p>Copyright © 2024 CryptoMarketPalace (Fictitious). All rights reserved.</p>
           <p>
-            Copyright © 2024 CryptoMarketPalace (Fictitious). All rights
-            reserved.
+            All materials contained on this website, including but not limited to text, graphics, logos, images, audio
+            clips, video clips, digital downloads, data compilations, and software, are purely fictional and not
+            intended for actual use.
           </p>
           <p>
-            All materials contained on this website, including but not limited
-            to text, graphics, logos, images, audio clips, video clips, digital
-            downloads, data compilations, and software, are purely fictional and
-            not intended for actual use.
-          </p>
-          <p>
-            This copyright notice is for demonstration purposes only and does
-            not represent an actual copyright claim by any entity. Any
-            resemblance to real entities is purely coincidental.
+            This copyright notice is for demonstration purposes only and does not represent an actual copyright claim by
+            any entity. Any resemblance to real entities is purely coincidental.
           </p>
           <p>
             For more information about this project, please contact:

@@ -16,12 +16,7 @@ interface SearchableListProps<T extends SearchableListItem> {
   className?: string;
 }
 
-const SearchableList: React.FC<SearchableListProps<any>> = ({
-  items,
-  renderItem,
-  className,
-  onElementClick,
-}) => {
+const SearchableList: React.FC<SearchableListProps<any>> = ({ items, renderItem, className, onElementClick }) => {
   const [searchTerm, setSearchTerm] = React.useState('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,9 +24,7 @@ const SearchableList: React.FC<SearchableListProps<any>> = ({
   };
 
   const filteredItems = items.filter((item) => {
-    const values = Object.values(item).map((value) =>
-      value?.toString().toLowerCase()
-    );
+    const values = Object.values(item).map((value) => value?.toString().toLowerCase());
     return values.some((value) => value?.includes(searchTerm.toLowerCase()));
   });
 
@@ -72,8 +65,7 @@ const SearchableList: React.FC<SearchableListProps<any>> = ({
             <li
               className="h-10 cursor-pointer flex items-center gap-x-2 hover:bg-purple-50 hover:font-semibold px-4"
               key={index}
-              onClick={() => onLiElementClick(item)}
-            >
+              onClick={() => onLiElementClick(item)}>
               {renderItem(item)}
               <hr />
             </li>

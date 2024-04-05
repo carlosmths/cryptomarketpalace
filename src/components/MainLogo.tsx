@@ -7,11 +7,7 @@ interface MainLogoProps {
   iconOnly?: boolean;
 }
 
-const MainLogo: React.FC<MainLogoProps> = ({
-  theme = Theme.light,
-  className,
-  iconOnly,
-}) => {
+const MainLogo: React.FC<MainLogoProps> = ({ theme = Theme.light, className, iconOnly }) => {
   const logoStyle = {
     fill: theme === Theme.light ? '#9333EA' : '#FFFFFF',
   };
@@ -21,11 +17,7 @@ const MainLogo: React.FC<MainLogoProps> = ({
   };
 
   return iconOnly ? (
-    <svg
-      className={classNames(className)}
-      viewBox="0 0 43 43"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg className={classNames(className)} viewBox="0 0 43 43" xmlns="http://www.w3.org/2000/svg">
       <g transform="matrix(.9887 0 0 1 -3.5361 -41.174)">
         <g transform="translate(6.122 43.165)">
           <rect width="38.4" height="39.017" fillOpacity="0" strokeWidth="2" />
@@ -33,8 +25,7 @@ const MainLogo: React.FC<MainLogoProps> = ({
             <svg
               version="1.1"
               viewBox="0.057765841484069824 0.03268163651227951 4.885552883148193 4.9640278816223145"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <g fill={logoStyle.fill}>
                 <path d="m0.94 4.26c-0.92-0.61-1.15-1.77-0.55-2.54 0.08-0.1 0.18-0.2 0.29-0.27 0.13-0.09 0.25-0.12 0.37-0.11 0.06 0 0.11 0.02 0.16 0.06-0.13 0.69 0.02 1.45 0.69 1.85-0.36 0.18-0.67-0.22-0.92-0.39-0.06-0.03-0.1-0.02-0.13 0.02-0.3 0.4-0.28 0.79 0.03 1.29 0.01 0.01 0.02 0.03 0.06 0.09z" />
                 <path d="m4.81 1.85c0.38 0.93-0.05 2.31-1.32 2.41-0.28 0.02-0.47-0.08-0.57-0.27-0.01-0.03-0.01-0.06 0.01-0.12 0.53-0.41 0.68-1.05 0.56-1.69 0.24 0.12 0.27 0.46 0.36 0.71 0.05 0.15 0.15 0.13 0.24 0.1 0.45-0.15 0.65-0.44 0.71-1.01 0-0.03 0-0.06 0.01-0.13z" />
@@ -48,11 +39,7 @@ const MainLogo: React.FC<MainLogoProps> = ({
       </g>
     </svg>
   ) : (
-    <svg
-      className={classNames(className)}
-      viewBox="0 0 263 40"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg className={classNames(className)} viewBox="0 0 263 40" xmlns="http://www.w3.org/2000/svg">
       <g transform="matrix(0.9887000322341919, 0, 0, 1, 0.3489319980144501, 0.49150100350379944)">
         <g transform="translate(0)">
           <rect width="38.4" height="39.017" fillOpacity="0" strokeWidth="2" />
@@ -61,8 +48,7 @@ const MainLogo: React.FC<MainLogoProps> = ({
               enableBackground="new 0 0 5 5.05"
               version="1.1"
               viewBox="0.057765841484069824 0.03268163651227951 4.885552883148193 4.9640278816223145"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <g fill={logoStyle.fill}>
                 <path d="m0.94 4.26c-0.92-0.61-1.15-1.77-0.55-2.54 0.08-0.1 0.18-0.2 0.29-0.27 0.13-0.09 0.25-0.12 0.37-0.11 0.06 0 0.11 0.02 0.16 0.06-0.13 0.69 0.02 1.45 0.69 1.85-0.36 0.18-0.67-0.22-0.92-0.39-0.06-0.03-0.1-0.02-0.13 0.02-0.3 0.4-0.28 0.79 0.03 1.29 0.01 0.01 0.02 0.03 0.06 0.09z" />
                 <path d="m4.81 1.85c0.38 0.93-0.05 2.31-1.32 2.41-0.28 0.02-0.47-0.08-0.57-0.27-0.01-0.03-0.01-0.06 0.01-0.12 0.53-0.41 0.68-1.05 0.56-1.69 0.24 0.12 0.27 0.46 0.36 0.71 0.05 0.15 0.15 0.13 0.24 0.1 0.45-0.15 0.65-0.44 0.71-1.01 0-0.03 0-0.06 0.01-0.13z" />
@@ -74,11 +60,7 @@ const MainLogo: React.FC<MainLogoProps> = ({
           </svg>
         </g>
         <g transform="translate(45.4 11.821)">
-          <g
-            fill={textStyle.fill}
-            stroke={textStyle.stroke}
-            data-gra="path-name"
-          >
+          <g fill={textStyle.fill} stroke={textStyle.stroke} data-gra="path-name">
             <g transform="scale(1)">
               <path
                 transform="translate(0 15.375)"

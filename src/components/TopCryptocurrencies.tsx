@@ -68,10 +68,7 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
     <div className="top-cryptocurrencies">
       {isLoading
         ? Array.from({ length: limit }).map((_, index) => (
-            <div
-              key={`skeleton-${index}`}
-              className="flex justify-between mb-2 items-center"
-            >
+            <div key={`skeleton-${index}`} className="flex justify-between mb-2 items-center">
               <div className="flex gap-x-2 w-6/12 items-center">
                 <div className="skeleton-loading w-10 h-10"></div>
                 <div className="skeleton-loading w-7/12 h-6"></div>
@@ -81,10 +78,7 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
             </div>
           ))
         : currencies?.map((currency) => (
-            <div
-              key={currency.id}
-              className="flex justify-between font-semibold mb-2 items-center"
-            >
+            <div key={currency.id} className="flex justify-between font-semibold mb-2 items-center">
               <div className="flex items-center gap-x-2 w-6/12">
                 <span className="flex items-center justify-center w-10 h-10">
                   <img src={currency.logoUrl?.toLowerCase()}></img>
@@ -93,17 +87,12 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
                   {currency.name} {`(${currency.symbol})`}
                 </span>
               </div>
-              <div className="w-3/12 text-right">
-                ${getFixedValue(currency.priceUsd)}
-              </div>
+              <div className="w-3/12 text-right">${getFixedValue(currency.priceUsd)}</div>
               <div
                 className={classNames(
                   'w-3/12 text-right',
-                  Number(getFixedValue(currency.changePercent24Hr)) >= 0
-                    ? 'text-green-700'
-                    : 'text-red-700'
-                )}
-              >
+                  Number(getFixedValue(currency.changePercent24Hr)) >= 0 ? 'text-green-700' : 'text-red-700'
+                )}>
                 {getFixedValue(currency.changePercent24Hr)}%
               </div>
             </div>

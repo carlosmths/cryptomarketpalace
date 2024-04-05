@@ -45,19 +45,9 @@ interface SocialMediaProps {
 
 const SocialMedia: React.FC<SocialMediaProps> = ({ theme = Theme.light }) => {
   return (
-    <div
-      className={classNames(
-        'flex gap-2 w-full h-6',
-        theme === Theme.light ? 'text-black' : 'text-white'
-      )}
-    >
+    <div className={classNames('flex gap-2 w-full h-6', theme === Theme.light ? 'text-black' : 'text-white')}>
       {socialMediaMap.map((socialMedia) => (
-        <a
-          key={socialMedia.url}
-          href={socialMedia.url}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a key={socialMedia.url} href={socialMedia.url} target="_blank" rel="noreferrer">
           <socialMedia.icon className="h-full hover:text-gray-400" />
         </a>
       ))}

@@ -8,11 +8,7 @@ interface SimpleAccordionProps {
   className?: string;
 }
 
-const SimpleAccordion: React.FC<SimpleAccordionProps> = ({
-  headline,
-  content,
-  className,
-}) => {
+const SimpleAccordion: React.FC<SimpleAccordionProps> = ({ headline, content, className }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   const handleClick = () => {
@@ -24,16 +20,10 @@ const SimpleAccordion: React.FC<SimpleAccordionProps> = ({
       className={classNames(
         'simple-accordion border border-solid rounded-lg p-3 hover:outline hover:outline-1 hover:outline-slate-950',
         className
-      )}
-    >
-      <div
-        className="cursor-pointer flex items-center justify-between"
-        onClick={handleClick}
-      >
+      )}>
+      <div className="cursor-pointer flex items-center justify-between" onClick={handleClick}>
         {headline}
-        <ArrowDown
-          className={classNames('w-3 h-full', isOpen && 'rotate-180')}
-        />
+        <ArrowDown className={classNames('w-3 h-full', isOpen && 'rotate-180')} />
       </div>
       <div className={classNames(isOpen ? 'block' : 'hidden')}>
         <hr className="my-4" />

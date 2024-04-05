@@ -16,16 +16,14 @@ const BurgerMenu: React.FC<BurgerMenuProps> = (props) => {
         'burger-menu flex-col items-center justify-between h-12 w-12 p-2 box-border cursor-pointer relative border border-solid rounded-lg border-purple-600',
         className
       )}
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {iterations.map((iteration) => (
         <div
           key={`burger-line-${iteration}`}
           className={classNames(
             'burger-line overflow-hidden h-1 w-full bg-black border-r-2 relative origin-center transition-all duration-50 ease-in-out',
             { 'scale-0': isMenuOpen && (iteration === 0 || iteration === 2) }
-          )}
-        ></div>
+          )}></div>
       ))}
     </div>
   );

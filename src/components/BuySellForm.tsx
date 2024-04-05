@@ -38,12 +38,8 @@ interface BuySellFormProps {
 
 const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
   const [currencies, setCurrencies] = React.useState<Currency[]>([]);
-  const [selectedCryptoCurrency, setSelectedCryptoCurrency] = React.useState<
-    Currency | undefined
-  >();
-  const [selectedFiatCurrency, setSelectedFiatCurrency] = React.useState<
-    Currency | undefined
-  >();
+  const [selectedCryptoCurrency, setSelectedCryptoCurrency] = React.useState<Currency | undefined>();
+  const [selectedFiatCurrency, setSelectedFiatCurrency] = React.useState<Currency | undefined>();
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [fiatValue, setFiatValue] = React.useState<string>('');
   const [cryptoValue, setCryptoValue] = React.useState<string>('');
@@ -66,8 +62,7 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
   const setDefaultCurrency = (currencies: Currency[]) => {
     currencies.forEach((currency) => {
       currency.id === 'bitcoin' && setSelectedCryptoCurrency({ ...currency });
-      currency.id === 'united-states-dollar' &&
-        setSelectedFiatCurrency({ ...currency });
+      currency.id === 'united-states-dollar' && setSelectedFiatCurrency({ ...currency });
     });
   };
 
@@ -87,9 +82,7 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
 
   const fetchRates = async () => {
     try {
-      const response: AxiosResponse<ApiResponse> = await axios<ApiResponse>(
-        'https://api.coincap.io/v2/rates'
-      );
+      const response: AxiosResponse<ApiResponse> = await axios<ApiResponse>('https://api.coincap.io/v2/rates');
       const apiResponse = await response.data;
       const currenciesWithLogos = setLogos(apiResponse.data);
       setDefaultCurrency(currenciesWithLogos);
@@ -104,40 +97,26 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
   const setConvertedCurrency = (newValue: string, currency: Currency) => {
     const isFiat = currency.type === CurrencyType.fiat;
     const usdRate = Number(newValue) * Number(currency?.rateUsd);
-    const totalUsdRate = isFiat
-      ? usdRate
-      : (usdRate + networkFeeUsd) / (1 - processingFeePercentage / 100);
+    const totalUsdRate = isFiat ? usdRate : (usdRate + networkFeeUsd) / (1 - processingFeePercentage / 100);
     const processingFeeUsd = (totalUsdRate * processingFeePercentage) / 100;
-    const totalValueUsd = isFiat
-      ? totalUsdRate - networkFeeUsd - processingFeeUsd
-      : totalUsdRate;
-    const selectedRateUsd = Number(
-      isFiat ? selectedCryptoCurrency?.rateUsd : selectedFiatCurrency?.rateUsd
-    );
+    const totalValueUsd = isFiat ? totalUsdRate - networkFeeUsd - processingFeeUsd : totalUsdRate;
+    const selectedRateUsd = Number(isFiat ? selectedCryptoCurrency?.rateUsd : selectedFiatCurrency?.rateUsd);
     const convertedValue = totalValueUsd / selectedRateUsd;
-    isFiat
-      ? setCryptoValue(convertedValue.toFixed(8).toString())
-      : setFiatValue(convertedValue.toFixed(2).toString());
-    const networkFeeCurrency =
-      networkFeeUsd / Number(selectedFiatCurrency?.rateUsd);
+    isFiat ? setCryptoValue(convertedValue.toFixed(8).toString()) : setFiatValue(convertedValue.toFixed(2).toString());
+    const networkFeeCurrency = networkFeeUsd / Number(selectedFiatCurrency?.rateUsd);
     setNetworkFee(networkFeeCurrency.toFixed(2));
-    const processingFeeCurrency =
-      processingFeeUsd > 0
-        ? processingFeeUsd / Number(selectedFiatCurrency?.rateUsd)
-        : 0;
+    const processingFeeCurrency = processingFeeUsd > 0 ? processingFeeUsd / Number(selectedFiatCurrency?.rateUsd) : 0;
     setProcessingFee(processingFeeCurrency.toFixed(2));
   };
 
-  const debouncedSetConvertedCurrency = React.useCallback(
-    debounce(setConvertedCurrency, 500),
-    [selectedCryptoCurrency, selectedFiatCurrency]
-  );
+  const debouncedSetConvertedCurrency = React.useCallback(debounce(setConvertedCurrency, 500), [
+    selectedCryptoCurrency,
+    selectedFiatCurrency,
+  ]);
 
   const onInputChange = (newValue: string, currency?: Currency) => {
     if (!currency) return;
-    currency.type === CurrencyType.fiat
-      ? setFiatValue(newValue)
-      : setCryptoValue(newValue);
+    currency.type === CurrencyType.fiat ? setFiatValue(newValue) : setCryptoValue(newValue);
     debouncedSetConvertedCurrency(newValue, currency);
   };
 
@@ -147,12 +126,7 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
 
   return (
     <form className="flex flex-col gap-5 h-96">
-      <div
-        className={classNames(
-          'flex gap-5',
-          type === BuySellType.buy ? 'flex-col' : 'flex-col-reverse'
-        )}
-      >
+      <div className={classNames('flex gap-5', type === BuySellType.buy ? 'flex-col' : 'flex-col-reverse')}>
         <InputCurrency
           key="fiat"
           placeholder="0.00"

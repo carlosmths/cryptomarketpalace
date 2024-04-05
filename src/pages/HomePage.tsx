@@ -22,15 +22,11 @@ const HomePage: React.FC = () => {
           centerContent
           leftCol={
             <>
-              <h2>
-                Experience the Future of Cryptocurrency Trading with Our Secure
-                and Diverse Exchange
-              </h2>
+              <h2>Experience the Future of Cryptocurrency Trading with Our Secure and Diverse Exchange</h2>
               <p>
-                Our cryptocurrency exchange offers top-notch security, a wide
-                range of cryptocurrencies, and competitive fees, providing you
-                with a seamless trading experience. Join us today and unlock the
-                potential of digital assets!
+                Our cryptocurrency exchange offers top-notch security, a wide range of cryptocurrencies, and competitive
+                fees, providing you with a seamless trading experience. Join us today and unlock the potential of
+                digital assets!
               </p>
             </>
           }
@@ -51,8 +47,7 @@ const HomePage: React.FC = () => {
           ease."
           imagePath="assets/web3.png"
           imageAlt="Web 1.0, Web 2.0, and Web 3.0"
-          imagePosition={ImagePosition.reverse}
-        >
+          imagePosition={ImagePosition.reverse}>
           <ul className="mb-0">
             <li>Instant Transactions</li>
             <li>Secure Wallet Integration</li>
@@ -101,10 +96,7 @@ const HomePage: React.FC = () => {
       <section>
         <Container>
           <h1>Frequently Asked Questions</h1>
-          <p>
-            Find answers to common questions about cryptocurrency trading on our
-            exchange.
-          </p>
+          <p>Find answers to common questions about cryptocurrency trading on our exchange.</p>
           <FaqAccordion
             faqs={[
               {
@@ -138,8 +130,7 @@ const HomePage: React.FC = () => {
                   'Yes, many merchants and businesses accept cryptocurrencies as a form of payment. However, widespread adoption is still limited compared to traditional fiat currencies. Cryptocurrencies offer benefits such as lower transaction fees, faster settlement times, and increased privacy for transactions.',
               },
               {
-                question:
-                  'How can I ensure the security of my cryptocurrencies?',
+                question: 'How can I ensure the security of my cryptocurrencies?',
                 answer:
                   "To ensure the security of your cryptocurrencies, it's essential to follow best practices such as using secure wallets, enabling two-factor authentication, keeping your private keys safe, and being cautious of phishing scams and fraudulent schemes. Additionally, staying informed about security updates and advancements in the cryptocurrency space is crucial.",
               },

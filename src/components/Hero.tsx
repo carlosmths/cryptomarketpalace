@@ -30,19 +30,16 @@ const Hero: React.FC<HeroProps> = ({
       className={classNames(
         'hero flex flex-1 min-h-[calc(100vh-20rem)] items-center bg-no-repeat bg-cover bg-right-bottom bg-black/50 bg-blend-darken'
       )}
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-    >
+      style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
       <Container
         className={classNames('hero-content flex py-24 text-white h-full', {
           'justify-center': variant === HeroVariant.simple,
-        })}
-      >
+        })}>
         <div
           className={classNames('w-full', {
             'lg:w-6/12 min-w-min lg:pr-10': variant === HeroVariant.fullHeight,
             'text-center': variant === HeroVariant.simple,
-          })}
-        >
+          })}>
           <h1>{title}</h1>
           <p>{subtitle}</p>
           {(primaryCta || secondaryCta) && (
@@ -53,11 +50,7 @@ const Hero: React.FC<HeroProps> = ({
                 </Button>
               )}
               {secondaryCta && (
-                <Button
-                  theme={Theme.dark}
-                  variant={ButtonVariant.secondary}
-                  href="#"
-                >
+                <Button theme={Theme.dark} variant={ButtonVariant.secondary} href="#">
                   {secondaryCta}
                 </Button>
               )}

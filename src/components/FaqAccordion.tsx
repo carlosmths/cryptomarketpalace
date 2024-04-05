@@ -28,23 +28,13 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
             'faq-container cursor-pointer border border-solid rounded-xl hover:bg-sky-100 p-4',
             openMenu === index && 'bg-sky-100'
           )}
-          onClick={() => clickHandler(index)}
-        >
+          onClick={() => clickHandler(index)}>
           <div className="headline flex items-center font-semibold">
             <div className="mr-2">{index + 1}</div>
             <div className="flex-1">{faq.question}</div>
-            <div className="w-6">
-              {openMenu !== index ? <Plus /> : <Minus />}
-            </div>
+            <div className="w-6">{openMenu !== index ? <Plus /> : <Minus />}</div>
           </div>
-          <div
-            className={classNames(
-              'mt-4',
-              openMenu !== index ? 'hidden' : 'block'
-            )}
-          >
-            {faq.answer}
-          </div>
+          <div className={classNames('mt-4', openMenu !== index ? 'hidden' : 'block')}>{faq.answer}</div>
         </div>
       ))}
     </div>

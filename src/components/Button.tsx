@@ -10,9 +10,7 @@ enum ButtonVariant {
 }
 
 type ButtonTypes = HTMLAnchorElement | HTMLButtonElement;
-interface ButtonProps<T extends ButtonTypes>
-  extends React.AnchorHTMLAttributes<T>,
-    React.ButtonHTMLAttributes<T> {
+interface ButtonProps<T extends ButtonTypes> extends React.AnchorHTMLAttributes<T>, React.ButtonHTMLAttributes<T> {
   href?: string;
   variant?: ButtonVariant;
   className?: string;
@@ -43,10 +41,8 @@ const Button: React.FC<ButtonProps<HTMLAnchorElement | HTMLButtonElement>> = ({
     variant === ButtonVariant.secondary && [
       'border border-solid',
       {
-        'border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800':
-          theme === Theme.light,
-        'border-white bg-transparent hover:border-gray-400 hover:text-gray-400':
-          theme === Theme.dark,
+        'border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800': theme === Theme.light,
+        'border-white bg-transparent hover:border-gray-400 hover:text-gray-400': theme === Theme.dark,
       },
     ],
     variant === ButtonVariant.next && [

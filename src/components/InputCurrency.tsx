@@ -7,8 +7,7 @@ import classNames from 'classnames';
 import { Currency, CurrencyType } from 'components/BuySellForm';
 import { handleParentFocus } from 'utilities/helpers';
 
-interface InputCurrencyProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputCurrencyProps extends React.InputHTMLAttributes<HTMLInputElement> {
   currencies: Currency[];
   currencyType: CurrencyType;
   selectedCurrency?: Currency;
@@ -72,16 +71,14 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
           onBlur={handleParentFocus}
           onChange={handleInputChange}
           value={value}
-          {...inputProps}
-        ></input>
+          {...inputProps}></input>
         {isLoading ? (
           <div className="skeleton-loading w-28 h-6"></div>
         ) : (
           <div
             className="flex items-center w-28 h-6 gap-x-2 font-bold cursor-pointer"
             tabIndex={0}
-            onClick={handleDropdownClick}
-          >
+            onClick={handleDropdownClick}>
             <Image
               key={selectedCurrency?.id}
               src={selectedCurrency?.logoUrl?.toLowerCase() || ''}
@@ -90,9 +87,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
               className="w-6"
             />
             <span className="flex-1">{selectedCurrency?.symbol}</span>
-            <ArrowDown
-              className={classNames('w-3 h-full', isMenuOpen && 'rotate-180')}
-            />
+            <ArrowDown className={classNames('w-3 h-full', isMenuOpen && 'rotate-180')} />
           </div>
         )}
       </div>

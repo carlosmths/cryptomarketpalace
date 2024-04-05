@@ -15,10 +15,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, className }) => {
   ];
 
   return (
-    <nav
-      className={classNames('navigation flex gap-x-4', className)}
-      role="navigation"
-    >
+    <nav className={classNames('navigation flex gap-x-4', className)} role="navigation">
       {links.map(([title, url], index) => (
         <NavLink
           key={`nav-link-${index}`}
@@ -30,8 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, className }) => {
               isActive ? 'lg:after:scale-100' : ''
             )
           }
-          onClick={onLinkClick}
-        >
+          onClick={onLinkClick}>
           {title}
         </NavLink>
       ))}

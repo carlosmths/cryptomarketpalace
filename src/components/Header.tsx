@@ -30,58 +30,30 @@ const Header: React.FC = () => {
         <a className="w-auto h-full" href="/">
           <MainLogo className="main-logo w-full h-full" />
         </a>
-        <BurgerMenu
-          isMenuOpen={isMenuOpen}
-          onClick={menuOnClick}
-          className="flex lg:hidden z-20 flex-shrink-0"
-        />
+        <BurgerMenu isMenuOpen={isMenuOpen} onClick={menuOnClick} className="flex lg:hidden z-20 flex-shrink-0" />
         <div
           className={classNames(
             isMenuOpen
               ? 'absolute inset-0 bg-slate-900/25 backdrop-blur-sm transition-opacity opacity-100 w-screen h-screen'
               : 'hidden',
             'backdrop'
-          )}
-        ></div>
+          )}></div>
         <div
           className={classNames(
             'navigation-container ml-auto gap-6 lg:flex',
             isMenuOpen
               ? 'flex absolute w-[min(20rem,calc(100vw-theme(spacing.10)))] h-screen flex-col top-0 right-0 bg-white items-start p-4 z-10'
               : 'hidden items-center'
-          )}
-        >
-          <MainLogo
-            className={classNames(isMenuOpen ? 'h-14' : 'hidden')}
-            iconOnly
-          />
-          <hr
-            className={classNames(
-              isMenuOpen ? 'block' : 'hidden',
-              'w-full mt-4'
-            )}
-          />
-          <Navigation
-            className={classNames({ 'flex-col': isMenuOpen })}
-            onLinkClick={closeMenu}
-          />
-          <hr
-            className={classNames(isMenuOpen ? 'block' : 'hidden', 'w-full')}
-          />
-          <div
-            className={classNames(
-              { 'flex-col w-full': isMenuOpen },
-              'flex gap-4'
-            )}
-          >
+          )}>
+          <MainLogo className={classNames(isMenuOpen ? 'h-14' : 'hidden')} iconOnly />
+          <hr className={classNames(isMenuOpen ? 'block' : 'hidden', 'w-full mt-4')} />
+          <Navigation className={classNames({ 'flex-col': isMenuOpen })} onLinkClick={closeMenu} />
+          <hr className={classNames(isMenuOpen ? 'block' : 'hidden', 'w-full')} />
+          <div className={classNames({ 'flex-col w-full': isMenuOpen }, 'flex gap-4')}>
             <Button href="#" onClick={closeMenu}>
               Login
             </Button>
-            <Button
-              href="#"
-              onClick={closeMenu}
-              variant={ButtonVariant.secondary}
-            >
+            <Button href="#" onClick={closeMenu} variant={ButtonVariant.secondary}>
               Sign Up
             </Button>
           </div>

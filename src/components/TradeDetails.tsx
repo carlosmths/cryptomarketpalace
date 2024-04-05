@@ -21,15 +21,12 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
   networkFee,
   processingFee,
 }) => {
-  const totalFiatValue = fiatValue
-    ? Number(fiatValue) - Number(networkFee) - Number(processingFee)
-    : 0;
+  const totalFiatValue = fiatValue ? Number(fiatValue) - Number(networkFee) - Number(processingFee) : 0;
 
   const getHeadLine = (): React.ReactNode => {
     return buySellType === BuySellType.buy ? (
       <>
-        You'll get {cryptoValue || 0} {selectedCryptoCurrency?.symbol} for{' '}
-        {selectedFiatCurrency?.currencySymbol}
+        You'll get {cryptoValue || 0} {selectedCryptoCurrency?.symbol} for {selectedFiatCurrency?.currencySymbol}
         {fiatValue || 0}
       </>
     ) : (
@@ -46,12 +43,8 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
         <div className="flex flex-col gap-y-3">
           <div className="flex justify-between">
             <span>
-              {cryptoValue || 0} {selectedCryptoCurrency?.symbol} @{' '}
-              {selectedFiatCurrency?.currencySymbol}
-              {(
-                Number(selectedCryptoCurrency?.rateUsd) /
-                Number(selectedFiatCurrency?.rateUsd)
-              ).toFixed(2)}
+              {cryptoValue || 0} {selectedCryptoCurrency?.symbol} @ {selectedFiatCurrency?.currencySymbol}
+              {(Number(selectedCryptoCurrency?.rateUsd) / Number(selectedFiatCurrency?.rateUsd)).toFixed(2)}
             </span>
             <span>
               {selectedFiatCurrency?.currencySymbol}
