@@ -49,8 +49,8 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
   const [cryptoValue, setCryptoValue] = React.useState<string>('');
   const [networkFee, setNetworkFee] = React.useState<string>('');
   const [processingFee, setProcessingFee] = React.useState<string>('');
-  const networkFeePercentage = 4.5;
-  const processingFeeUsd = random(1.8, 2.6);
+  const processingFeePercentage = 4.5; // Random values to calculate fees.
+  const networkFeeUsd = random(1.8, 2.6);
 
   const setLogos = (currencies: Currency[]) => {
     return currencies.map((currency) => {
@@ -103,37 +103,29 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
 
   const setConvertedCurrency = (newValue: string, currency: Currency) => {
     const isFiat = currency.type === CurrencyType.fiat;
+    const usdRate = Number(newValue) * Number(currency?.rateUsd);
+    const totalUsdRate = isFiat
+      ? usdRate
+      : (usdRate + networkFeeUsd) / (1 - processingFeePercentage / 100);
+    const processingFeeUsd = (totalUsdRate * processingFeePercentage) / 100;
+    const totalValueUsd = isFiat
+      ? totalUsdRate - networkFeeUsd - processingFeeUsd
+      : totalUsdRate;
     const selectedRateUsd = Number(
       isFiat ? selectedCryptoCurrency?.rateUsd : selectedFiatCurrency?.rateUsd
     );
-    const usdRate = Number(newValue) * Number(currency?.rateUsd);
-    // console.log('newValue', newValue, 'currency.rateUsd', currency?.rateUsd);
-    const networkFeeUsd = (usdRate * networkFeePercentage) / 100;
-    const totalValue = usdRate ? usdRate - processingFeeUsd - networkFeeUsd : 0;
-    const convertedValue = totalValue / selectedRateUsd;
+    const convertedValue = totalValueUsd / selectedRateUsd;
     isFiat
-      ? setCryptoValue(convertedValue.toFixed(5).toString())
+      ? setCryptoValue(convertedValue.toFixed(8).toString())
       : setFiatValue(convertedValue.toFixed(2).toString());
     const networkFeeCurrency =
-      networkFeeUsd > 0
-        ? networkFeeUsd / Number(selectedFiatCurrency?.rateUsd)
-        : 0;
+      networkFeeUsd / Number(selectedFiatCurrency?.rateUsd);
     setNetworkFee(networkFeeCurrency.toFixed(2));
     const processingFeeCurrency =
       processingFeeUsd > 0
         ? processingFeeUsd / Number(selectedFiatCurrency?.rateUsd)
         : 0;
     setProcessingFee(processingFeeCurrency.toFixed(2));
-    console.log(
-      'usdRate',
-      usdRate,
-      'convertedValue',
-      convertedValue,
-      'non-converted',
-      usdRate / selectedRateUsd,
-      'currency',
-      currency
-    );
   };
 
   const debouncedSetConvertedCurrency = React.useCallback(

@@ -10,11 +10,11 @@ const ExchangePage: React.FC = () => {
           tabs={[
             {
               title: 'Buy',
-              content: <BuySellForm type={BuySellType.buy} />,
+              content: <BuySellForm key="buy-form" type={BuySellType.buy} />,
             },
             {
               title: 'Sell',
-              content: <BuySellForm type={BuySellType.sell} />,
+              content: <BuySellForm key="sell-form" type={BuySellType.sell} />,
             },
           ]}
           className="max-w-xl mx-auto"

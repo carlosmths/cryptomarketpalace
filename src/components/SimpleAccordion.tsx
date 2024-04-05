@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import ArrowDown from 'assets/arrow-down.svg?react';
 
 interface SimpleAccordionProps {
   headline: React.ReactNode;
@@ -21,12 +22,18 @@ const SimpleAccordion: React.FC<SimpleAccordionProps> = ({
   return (
     <div
       className={classNames(
-        'simple-accordion border border-solid rounded-lg p-3',
+        'simple-accordion border border-solid rounded-lg p-3 hover:outline hover:outline-1 hover:outline-slate-950',
         className
       )}
     >
-      <div className="cursor-pointer" onClick={handleClick}>
+      <div
+        className="cursor-pointer flex items-center justify-between"
+        onClick={handleClick}
+      >
         {headline}
+        <ArrowDown
+          className={classNames('w-3 h-full', isOpen && 'rotate-180')}
+        />
       </div>
       <div className={classNames(isOpen ? 'block' : 'hidden')}>
         <hr className="my-4" />

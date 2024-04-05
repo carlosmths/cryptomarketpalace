@@ -90,7 +90,9 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
               className="w-6"
             />
             <span className="flex-1">{selectedCurrency?.symbol}</span>
-            <ArrowDown className="w-2 h-full" />
+            <ArrowDown
+              className={classNames('w-3 h-full', isMenuOpen && 'rotate-180')}
+            />
           </div>
         )}
       </div>
