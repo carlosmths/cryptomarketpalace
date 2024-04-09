@@ -7,6 +7,15 @@ export default {
       fontFamily: {
         montserrat: 'Montserrat',
       },
+      keyframes: {
+        swipe: {
+          '0%': { transform: 'translate(0)' },
+          '100%': { transform: 'translate(-100%)' },
+        },
+      },
+      animation: {
+        swipe: 'swipe var(--speed) linear infinite backwards',
+      },
     },
   },
   plugins: [],

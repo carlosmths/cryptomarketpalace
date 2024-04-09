@@ -231,4 +231,13 @@
   .focusable-input {
     @apply outline outline-1 outline-slate-950;
   }
+
+  .full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
 }
