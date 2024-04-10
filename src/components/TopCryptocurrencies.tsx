@@ -64,6 +64,10 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const getGreenOrRedColor = (currency: CryptoCurrency): string => {
+    return Number(getFixedValue(currency.changePercent24Hr)) >= 0 ? 'text-green-700' : 'text-red-700';
+  };
+
   return (
     <div className="top-cryptocurrencies">
       {isLoading
@@ -87,12 +91,10 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
                   {currency.name} {`(${currency.symbol})`}
                 </span>
               </div>
-              <div className="w-3/12 text-right">${getFixedValue(currency.priceUsd)}</div>
-              <div
-                className={classNames(
-                  'w-3/12 text-right',
-                  Number(getFixedValue(currency.changePercent24Hr)) >= 0 ? 'text-green-700' : 'text-red-700'
-                )}>
+              <div className={classNames('w-3/12 text-right', getGreenOrRedColor(currency))}>
+                ${getFixedValue(currency.priceUsd)}
+              </div>
+              <div className={classNames('w-3/12 text-right', getGreenOrRedColor(currency))}>
                 {getFixedValue(currency.changePercent24Hr)}%
               </div>
             </div>
