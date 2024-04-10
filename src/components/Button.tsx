@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { Theme } from 'types/sharedTypes';
 import ArrowRight from 'assets/arrow-right.svg?react';
+import Spinner from 'assets/spinner.svg?react';
 
 enum ButtonVariant {
   primary = 'primary',
@@ -16,6 +17,7 @@ interface ButtonProps<T extends ButtonTypes> extends React.AnchorHTMLAttributes<
   className?: string;
   theme?: Theme;
   type?: 'submit' | 'reset' | 'button';
+  isLoading?: boolean;
 }
 
 const getIcon = (): React.ReactElement => (
@@ -30,43 +32,54 @@ const Button: React.FC<ButtonProps<HTMLAnchorElement | HTMLButtonElement>> = ({
   href,
   className,
   theme = Theme.light,
+  isLoading,
   ...rest
 }) => {
   const commonClasses = classNames(
-    'link-button flex justify-center items-center py-4 px-6 lg:py-3 lg:px-5 rounded-lg box-border font-semibold',
+    'link-button flex justify-center items-center py-4 px-6 lg:py-3 lg:px-5 rounded-lg box-border font-semibold min-h-5 disabled:opacity-70',
     variant === ButtonVariant.primary && {
-      'bg-purple-600 text-white hover:bg-purple-800': theme === Theme.light,
-      'bg-white text-purple-950 hover:bg-gray-200': theme === Theme.dark,
+      'bg-purple-600 text-white hover:enabled:bg-purple-800': theme === Theme.light,
+      'bg-white text-purple-950 hover:enabled:bg-gray-200': theme === Theme.dark,
     },
     variant === ButtonVariant.secondary && [
       'border border-solid',
       {
-        'border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800': theme === Theme.light,
-        'border-white bg-transparent hover:border-gray-400 hover:text-gray-400': theme === Theme.dark,
+        'border-purple-600 text-purple-600 hover:enabled:text-purple-800 hover:border-purple-800':
+          theme === Theme.light,
+        'border-white bg-transparent hover:enabled:border-gray-400 hover:text-gray-400': theme === Theme.dark,
       },
     ],
     variant === ButtonVariant.next && [
       'flex items-center border-none',
       {
-        'hover:text-purple-800': theme === Theme.light,
-        'text-white hover:text-gray-200': theme === Theme.dark,
+        'hover:enabled:text-purple-800': theme === Theme.light,
+        'text-white hover:enabled:text-gray-200': theme === Theme.dark,
       },
     ],
     className
   );
 
-  if (href) {
-    return (
-      <Link to={href} {...rest} className={commonClasses}>
+  const renderChildren = (): React.ReactNode => {
+    return isLoading ? (
+      <Spinner className="h-5 p-1" />
+    ) : (
+      <>
         {children}
         {variant === ButtonVariant.next && getIcon()}
+      </>
+    );
+  };
+
+  if (href) {
+    return (
+      <Link to={href} className={commonClasses} {...rest}>
+        {renderChildren()}
       </Link>
     );
   }
   return (
-    <button {...rest} className={commonClasses}>
-      {children}
-      {variant === ButtonVariant.next && getIcon()}
+    <button className={commonClasses} {...rest} disabled={isLoading}>
+      {renderChildren()}
     </button>
   );
 };

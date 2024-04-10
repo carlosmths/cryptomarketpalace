@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
       author: 'Jane Smith',
       position: 'Senior Software Engineer, TechCorp Solutions',
       profileImage: Image1,
-      rating: 4.5,
+      rating: 5,
       quotation: "I've been using this exchange for years and it never disappoints.",
     },
     {
@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
       author: 'David Brown',
       position: 'Investment Strategist, Quantum Capital Management',
       profileImage: Image4,
-      rating: 4.7,
+      rating: 5,
       quotation:
         "Impressive range of cryptocurrencies available for trading. It's my go-to platform for diverse investment options.",
     },
@@ -55,7 +55,7 @@ const HomePage: React.FC = () => {
       author: 'Michael Williams',
       position: 'Day Trader, Market Masters LLC',
       profileImage: Image6,
-      rating: 4.6,
+      rating: 4,
       quotation:
         "The platform's analytical tools have been invaluable in making informed trading decisions. Highly recommended!",
     },

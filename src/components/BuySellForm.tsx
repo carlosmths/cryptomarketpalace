@@ -180,8 +180,11 @@ const BuySellForm: React.FC<BuySellFormProps> = ({ type }) => {
         buySellType={type}
         networkFee={networkFee}
         processingFee={processingFee}
+        className={classNames(isLoading && 'disabled')}
       />
-      <Button className="mt-auto">Continue</Button>
+      <Button className="mt-auto" isLoading={isLoading}>
+        Continue
+      </Button>
     </form>
   );
 };

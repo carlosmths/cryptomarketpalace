@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { BuySellType } from 'components/BuySellForm';
 import { Currency } from 'components/InputCurrency';
 import { SimpleAccordion } from 'components/SimpleAccordion';
@@ -10,6 +11,7 @@ interface TradeDetailsProps {
   buySellType: BuySellType;
   networkFee: string;
   processingFee: string;
+  className?: string;
 }
 
 const TradeDetails: React.FC<TradeDetailsProps> = ({
@@ -20,6 +22,7 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
   buySellType,
   networkFee,
   processingFee,
+  className,
 }) => {
   const buyingFiatValue = fiatValue ? Number(fiatValue) - Number(networkFee) - Number(processingFee) : 0;
   const sellingFiatValue = fiatValue ? Number(fiatValue) + Number(processingFee) : 0;
@@ -74,7 +77,7 @@ const TradeDetails: React.FC<TradeDetailsProps> = ({
           </div>
         </div>
       }
-      className="bg-white"
+      className={classNames('bg-white', className)}
     />
   );
 };

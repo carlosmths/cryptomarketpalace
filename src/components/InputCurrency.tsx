@@ -62,7 +62,7 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
   };
 
   return (
-    <div className="input-currency relative">
+    <div className={classNames('input-currency relative', isLoading && 'disabled')}>
       <div className="flex items-center gap-x-3 bg-white px-3 rounded-lg hover:outline hover:outline-1 hover:outline-slate-950">
         <input
           type="number"
@@ -71,7 +71,8 @@ const InputCurrency: React.FC<InputCurrencyProps> = ({
           onBlur={handleParentFocus}
           onChange={handleInputChange}
           value={value}
-          {...inputProps}></input>
+          {...inputProps}
+        />
         {isLoading ? (
           <div className="skeleton-loading w-28 h-6"></div>
         ) : (
