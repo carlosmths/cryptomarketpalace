@@ -30,11 +30,11 @@ const Header: React.FC = () => {
         <a className="w-auto h-full" href="/">
           <MainLogo className="main-logo w-full h-full" />
         </a>
-        <BurgerMenu isMenuOpen={isMenuOpen} onClick={menuOnClick} className="flex lg:hidden z-20 flex-shrink-0" />
+        <BurgerMenu isMenuOpen={isMenuOpen} onClick={menuOnClick} className="flex lg:hidden z-50 flex-shrink-0" />
         <div
           className={classNames(
             isMenuOpen
-              ? 'absolute inset-0 bg-slate-900/25 backdrop-blur-sm transition-opacity opacity-100 w-screen h-screen'
+              ? 'absolute inset-0 bg-slate-900/25 backdrop-blur-sm transition-opacity opacity-100 w-screen h-screen z-40'
               : 'hidden',
             'backdrop'
           )}></div>
