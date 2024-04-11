@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Tab {
   title: string;
@@ -23,7 +24,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, className }) => {
       <div className="tabs flex items-center gap-8 font-bold">
         {tabs.map((tab, index) => (
           <button
-            key={index}
+            key={uuidv4()}
             className={`tab cursor-pointer mb-1 py-2 px-6 uppercase ${
               index === activeTabIndex ? 'active text-purple-600' : ''
             }`}

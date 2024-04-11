@@ -4,6 +4,7 @@ import Search from 'assets/search.svg?react';
 import { handleParentFocus } from 'utilities/helpers';
 import Close from 'assets/close.svg?react';
 import FileSearch from 'assets/file-search.svg?react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface SearchableListItem {
   [key: string]: any;
@@ -61,10 +62,10 @@ const SearchableList: React.FC<SearchableListProps<any>> = ({ items, renderItem,
       </div>
       {filteredItems.length > 0 ? (
         <ul className="list-none-custom mb-0">
-          {filteredItems.map((item, index) => (
+          {filteredItems.map((item) => (
             <li
               className="h-10 cursor-pointer flex items-center gap-x-2 hover:bg-purple-50 hover:font-semibold px-4"
-              key={index}
+              key={uuidv4()}
               onClick={() => onLiElementClick(item)}>
               {renderItem(item)}
               <hr />

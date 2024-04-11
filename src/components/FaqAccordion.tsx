@@ -2,6 +2,7 @@ import Plus from 'assets/plus.svg?react';
 import Minus from 'assets/minus.svg?react';
 import React from 'react';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 interface FaqAccordionDataType {
   question: string;
@@ -23,7 +24,7 @@ const FaqAccordion: React.FC<FaqAccordionProps> = ({ faqs }) => {
     <div className="faq-list flex flex-col gap-y-4">
       {faqs.map((faq, index) => (
         <div
-          key={`faq-${index}`}
+          key={uuidv4()}
           className={classNames(
             'faq-container cursor-pointer border border-solid rounded-xl hover:bg-sky-100 p-4',
             openMenu === index && 'bg-sky-100'

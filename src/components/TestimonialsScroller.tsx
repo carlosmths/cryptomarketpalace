@@ -6,6 +6,7 @@ import Image4 from 'assets/face-4.jpg';
 import Image5 from 'assets/face-5.jpg';
 import Image6 from 'assets/face-6.jpg';
 import { AutoScroller } from 'components/AutoScroller';
+import { v4 as uuidv4 } from 'uuid';
 
 const TestimonialsScroller: React.FC = () => {
   const testimonials: TestimonialProps[] = [
@@ -58,7 +59,7 @@ const TestimonialsScroller: React.FC = () => {
   const renderTestimonials = (): React.ReactNode[] => {
     return testimonials.map((testimonial, index) => (
       <Testimonial
-        key={`testimonial-${index}`}
+        key={uuidv4()}
         author={testimonial.author}
         position={testimonial.position}
         profileImage={testimonial.profileImage}

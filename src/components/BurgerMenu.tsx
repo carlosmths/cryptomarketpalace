@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 interface BurgerMenuProps {
   onClick: () => void;
@@ -19,7 +20,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = (props) => {
       onClick={onClick}>
       {iterations.map((iteration) => (
         <div
-          key={`burger-line-${iteration}`}
+          key={uuidv4()}
           className={classNames(
             'burger-line overflow-hidden h-1 w-full bg-black border-r-2 relative origin-center transition-all duration-50 ease-in-out',
             { 'scale-0': isMenuOpen && (iteration === 0 || iteration === 2) }

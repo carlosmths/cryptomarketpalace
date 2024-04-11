@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 interface NavigationProps {
   onLinkClick?: () => void;
@@ -16,9 +17,9 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, className }) => {
 
   return (
     <nav className={classNames('navigation flex gap-x-4', className)} role="navigation">
-      {links.map(([title, url], index) => (
+      {links.map(([title, url]) => (
         <NavLink
-          key={`nav-link-${index}`}
+          key={uuidv4()}
           to={url}
           className={({ isActive }) =>
             classNames(

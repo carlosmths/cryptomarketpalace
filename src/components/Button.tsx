@@ -35,25 +35,27 @@ const Button: React.FC<ButtonProps<HTMLAnchorElement | HTMLButtonElement>> = ({
   isLoading,
   ...rest
 }) => {
+  const isLightTheme = theme === Theme.light;
+
   const commonClasses = classNames(
     'link-button flex justify-center items-center py-4 px-6 lg:py-3 lg:px-5 rounded-lg box-border font-semibold min-h-5',
     isLoading && 'disabled',
     variant === ButtonVariant.primary && {
-      'bg-purple-600 text-white hover:bg-purple-800': theme === Theme.light,
-      'bg-white text-purple-950 hover:bg-gray-200': theme === Theme.dark,
+      'bg-purple-600 text-white hover:bg-purple-800': isLightTheme,
+      'bg-white text-purple-950 hover:bg-gray-200': !isLightTheme,
     },
     variant === ButtonVariant.secondary && [
       'border border-solid',
       {
-        'border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800': theme === Theme.light,
-        'border-white bg-transparent hover:border-gray-400 hover:text-gray-400': theme === Theme.dark,
+        'border-purple-600 text-purple-600 hover:text-purple-800 hover:border-purple-800': isLightTheme,
+        'border-white bg-transparent hover:border-gray-400 hover:text-gray-400': !isLightTheme,
       },
     ],
     variant === ButtonVariant.next && [
       'flex items-center border-none',
       {
-        'hover:text-purple-800': theme === Theme.light,
-        'text-white hover:text-gray-200': theme === Theme.dark,
+        'hover:text-purple-800': isLightTheme,
+        'text-white hover:text-gray-200': !isLightTheme,
       },
     ],
     className
