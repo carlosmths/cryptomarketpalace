@@ -1,4 +1,4 @@
-import { TwoColumnContainer } from 'components/TwoColumnContainer';
+import { ColumnControl } from 'components/ColumnControl';
 
 enum ImagePosition {
   default = 'default',
@@ -36,12 +36,11 @@ const ContentWithImage: React.FC<ContentWithimageProps> = ({
   );
 
   const rightCol = <img className="rounded-2xl" src={imagePath} alt={imageAlt} />;
-  const defaultImaagePos = imagePosition === ImagePosition.default;
+  const defaultImagePos = imagePosition === ImagePosition.default;
 
   return (
-    <TwoColumnContainer
-      leftCol={defaultImaagePos ? leftCol : rightCol}
-      rightCol={defaultImaagePos ? rightCol : leftCol}
+    <ColumnControl
+      columns={defaultImagePos ? [leftCol, rightCol] : [rightCol, leftCol]}
       centerContent
       className={className}
     />

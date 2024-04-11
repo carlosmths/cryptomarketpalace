@@ -5,7 +5,7 @@ import { Container } from 'components/Container';
 import { FaqAccordion } from 'components/FaqAccordion';
 import { StepsList } from 'components/StepsList';
 import { Tabs } from 'components/Tabs';
-import { TwoColumnContainer } from 'components/TwoColumnContainer';
+import { ColumnControl } from 'components/ColumnControl';
 
 const ExchangePage: React.FC = () => {
   return (
@@ -28,8 +28,8 @@ const ExchangePage: React.FC = () => {
         </Container>
       </section>
       <section className="bg-indigo-50">
-        <TwoColumnContainer
-          leftCol={
+        <ColumnControl
+          columns={[
             <>
               <p className="subheading">Simplified</p>
               <h2>Easy Steps to Buy and Sell Cryptocurrencies</h2>
@@ -39,9 +39,7 @@ const ExchangePage: React.FC = () => {
                   Learn More
                 </Button>
               </div>
-            </>
-          }
-          rightCol={
+            </>,
             <StepsList
               steps={[
                 {
@@ -61,8 +59,8 @@ const ExchangePage: React.FC = () => {
                   text: 'Execute your trades and manage your portfolio with ease.',
                 },
               ]}
-            />
-          }
+            />,
+          ]}
         />
       </section>
       <section>

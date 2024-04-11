@@ -4,7 +4,7 @@ import { FaqAccordion } from 'components/FaqAccordion';
 import { Hero } from 'components/Hero';
 import { TestimonialsScroller } from 'components/TestimonialsScroller';
 import { TopCryptocurrencies } from 'components/TopCryptocurrencies';
-import { TwoColumnContainer } from 'components/TwoColumnContainer';
+import { ColumnControl } from 'components/ColumnControl';
 
 const HomePage: React.FC = () => {
   return (
@@ -17,9 +17,9 @@ const HomePage: React.FC = () => {
         secondaryCta="Learn More"
       />
       <section className="bg-arrow-right font-display">
-        <TwoColumnContainer
+        <ColumnControl
           centerContent
-          leftCol={
+          columns={[
             <>
               <h2>Experience the Future of Cryptocurrency Trading with Our Secure and Diverse Exchange</h2>
               <p>
@@ -27,14 +27,12 @@ const HomePage: React.FC = () => {
                 fees, providing you with a seamless trading experience. Join us today and unlock the potential of
                 digital assets!
               </p>
-            </>
-          }
-          rightCol={
+            </>,
             <>
               <h3>Top 5 cryptocurrencies</h3>
               <TopCryptocurrencies limit={5} />
-            </>
-          }
+            </>,
+          ]}
         />
       </section>
       <section className="bg-indigo-50">
