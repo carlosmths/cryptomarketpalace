@@ -5,6 +5,8 @@ import { Hero } from 'components/Hero';
 import { TestimonialsScroller } from 'components/TestimonialsScroller';
 import { TopCryptocurrencies } from 'components/TopCryptocurrencies';
 import { ColumnControl } from 'components/ColumnControl';
+import BgHeroHomeImg from 'assets/bg-hero-home.jpeg';
+import Web3Img from 'assets/web3.png';
 
 const HomePage: React.FC = () => {
   return (
@@ -12,45 +14,51 @@ const HomePage: React.FC = () => {
       <Hero
         title="Trade Cryptocurrencies with Ease on Our Platform"
         subtitle="Buy and sell cryptocurrencies hassle-free with our user-friendly platform."
-        backgroundImageUrl="assets/bg-hero-home.jpeg"
+        backgroundImageUrl={BgHeroHomeImg}
         primaryCta="Sign Up"
         secondaryCta="Learn More"
       />
       <section className="bg-arrow-right font-display">
-        <ColumnControl
-          centerContent
-          columns={[
-            <>
-              <h2>Experience the Future of Cryptocurrency Trading with Our Secure and Diverse Exchange</h2>
-              <p>
-                Our cryptocurrency exchange offers top-notch security, a wide range of cryptocurrencies, and competitive
-                fees, providing you with a seamless trading experience. Join us today and unlock the potential of
-                digital assets!
-              </p>
-            </>,
-            <>
-              <h3>Top 5 cryptocurrencies</h3>
-              <TopCryptocurrencies limit={5} />
-            </>,
-          ]}
-        />
+        <Container>
+          <ColumnControl
+            centerContent
+            columns={[
+              [
+                <>
+                  <h2>Experience the Future of Cryptocurrency Trading with Our Secure and Diverse Exchange</h2>
+                  <p>
+                    Our cryptocurrency exchange offers top-notch security, a wide range of cryptocurrencies, and
+                    competitive fees, providing you with a seamless trading experience. Join us today and unlock the
+                    potential of digital assets!
+                  </p>
+                </>,
+                <>
+                  <h3>Top 5 cryptocurrencies</h3>
+                  <TopCryptocurrencies limit={5} />
+                </>,
+              ],
+            ]}
+          />
+        </Container>
       </section>
       <section className="bg-indigo-50">
-        <ContentWithImage
-          subHeading="Revolution"
-          title="Unlock the Power of Web3 Integration"
-          text="Experience a seamless and secure cryptocurrency exchange platform
+        <Container>
+          <ContentWithImage
+            subHeading="Revolution"
+            title="Unlock the Power of Web3 Integration"
+            text="Experience a seamless and secure cryptocurrency exchange platform
           powered by Web3 technology. Buy, sell, and trade cryptocurrencies with
           ease."
-          imagePath="assets/web3.png"
-          imageAlt="Web 1.0, Web 2.0, and Web 3.0"
-          imagePosition={ImagePosition.reverse}>
-          <ul className="mb-0">
-            <li>Instant Transactions</li>
-            <li>Secure Wallet Integration</li>
-            <li>Real-Time Market Data</li>
-          </ul>
-        </ContentWithImage>
+            imagePath={Web3Img}
+            imageAlt="Web 1.0, Web 2.0, and Web 3.0"
+            imagePosition={ImagePosition.reverse}>
+            <ul className="mb-0">
+              <li>Instant Transactions</li>
+              <li>Secure Wallet Integration</li>
+              <li>Real-Time Market Data</li>
+            </ul>
+          </ContentWithImage>
+        </Container>
       </section>
       <section>
         <Container>
