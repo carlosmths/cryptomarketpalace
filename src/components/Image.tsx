@@ -3,11 +3,11 @@ import React from 'react';
 interface ImageProps {
   src: string;
   alt: string;
-  fallbackSrc: string;
+  fallbackSrc?: string;
   className?: string;
 }
 
-const Image: React.FC<ImageProps> = ({ src, alt, fallbackSrc, className }) => {
+const Image: React.FC<ImageProps> = ({ src, alt, fallbackSrc = '', className }) => {
   const [imgSrc, setImgSrc] = React.useState<string>(src || fallbackSrc);
 
   const onError = () => {

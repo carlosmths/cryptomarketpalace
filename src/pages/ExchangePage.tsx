@@ -28,40 +28,44 @@ const ExchangePage: React.FC = () => {
         </Container>
       </section>
       <section className="bg-indigo-50">
-        <ColumnControl
-          columns={[
-            <>
-              <p className="subheading">Simplified</p>
-              <h2>Easy Steps to Buy and Sell Cryptocurrencies</h2>
-              <div className="flex">
-                <Button href="#">Get Started</Button>
-                <Button href="#" variant={ButtonVariant.next}>
-                  Learn More
-                </Button>
-              </div>
-            </>,
-            <StepsList
-              steps={[
-                {
-                  title: 'Create account',
-                  text: 'Create an account and verify your identity securely.',
-                },
-                {
-                  title: 'Deposit funds',
-                  text: 'Deposit funds into your account using various payment methods.',
-                },
-                {
-                  title: 'Choose cryptocurrency',
-                  text: 'Browse the available cryptocurrencies and choose the ones you want to buy or sell.',
-                },
-                {
-                  title: 'Trade',
-                  text: 'Execute your trades and manage your portfolio with ease.',
-                },
-              ]}
-            />,
-          ]}
-        />
+        <Container>
+          <ColumnControl
+            columns={[
+              [
+                <>
+                  <p className="subheading">Simplified</p>
+                  <h2>Easy Steps to Buy and Sell Cryptocurrencies</h2>
+                  <div className="flex">
+                    <Button href="#">Get Started</Button>
+                    <Button href="#" variant={ButtonVariant.next}>
+                      Learn More
+                    </Button>
+                  </div>
+                </>,
+                <StepsList
+                  steps={[
+                    {
+                      title: 'Create account',
+                      text: 'Create an account and verify your identity securely.',
+                    },
+                    {
+                      title: 'Deposit funds',
+                      text: 'Deposit funds into your account using various payment methods.',
+                    },
+                    {
+                      title: 'Choose cryptocurrency',
+                      text: 'Browse the available cryptocurrencies and choose the ones you want to buy or sell.',
+                    },
+                    {
+                      title: 'Trade',
+                      text: 'Execute your trades and manage your portfolio with ease.',
+                    },
+                  ]}
+                />,
+              ],
+            ]}
+          />
+        </Container>
       </section>
       <section>
         <Container>

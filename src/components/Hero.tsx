@@ -44,7 +44,7 @@ const Hero: React.FC<HeroProps> = ({
             'text-center': isSimpleVariant,
           })}>
           <h1>{title}</h1>
-          <p className="mb-0">{subtitle}</p>
+          <p className={classNames(!primaryCta && !secondaryCta && 'mb-0')}>{subtitle}</p>
           {(primaryCta || secondaryCta) && (
             <div className="buttons flex gap-4 items-center">
               {primaryCta && (

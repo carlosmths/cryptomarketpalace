@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { Image } from 'components/Image';
 import { RatingStars } from 'components/RatingStars';
 
 interface TestimonialProps {
@@ -20,7 +21,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ profileImage, quotation, auth
       <RatingStars rating={rating} className="mb-4" />
       <p className="text-gray-700 mb-4">{quotation}</p>
       <div className="flex items-center gap-x-4 mt-auto">
-        <img src={profileImage} alt={`${author}'s Profile`} className="w-12 h-12 rounded-full" />
+        <Image src={profileImage} alt={`${author}'s Profile`} className="w-12 h-12 rounded-full" />
         <div>
           <p className="text-lg font-semibold mb-0">{author}</p>
           <p className="text-gray-500 mb-0">{position}</p>

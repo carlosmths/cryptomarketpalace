@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { Image } from 'components/Image';
 
 type CryptoCurrency = {
   id: string;
@@ -86,7 +87,7 @@ const TopCryptocurrencies: React.FC<TopCryptocurrenciesProps> = ({ limit }) => {
             <div key={currency.id} className="flex justify-between font-semibold mb-2 items-center">
               <div className="flex items-center gap-x-2 w-6/12">
                 <span className="flex items-center justify-center w-10 h-10">
-                  <img src={currency.logoUrl?.toLowerCase()}></img>
+                  <Image src={currency.logoUrl?.toLowerCase() || ''} alt="currency flag" />
                 </span>
                 <span>
                   {currency.name} {`(${currency.symbol})`}
