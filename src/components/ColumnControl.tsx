@@ -13,7 +13,10 @@ const ColumnControl: React.FC<ColumnControlProps> = ({ columns, centerContent, c
       {columns.map((column) => (
         <div
           key={uuidv4()}
-          className={classNames('flex flex-col gap-x-24 gap-y-8 lg:flex-row', centerContent && 'justify-center')}>
+          className={classNames(
+            'flex flex-col lg:gap-x-8 xl:gap-x-24 gap-y-8 lg:flex-row',
+            centerContent && 'items-center'
+          )}>
           {column.map((element) => (
             <div key={uuidv4()} className="flex flex-col flex-1">
               {element}

@@ -36,15 +36,11 @@ const ContentWithImage: React.FC<ContentWithimageProps> = ({
     </>
   );
 
-  const rightCol = <Image className="rounded-2xl" src={imagePath} alt={imageAlt} />;
+  const rightCol = <Image className="rounded-lg" src={imagePath} alt={imageAlt} />;
   const defaultImagePos = imagePosition === ImagePosition.default;
 
   return (
-    <ColumnControl
-      columns={defaultImagePos ? [[leftCol, rightCol]] : [[rightCol, leftCol]]}
-      centerContent
-      className={className}
-    />
+    <ColumnControl columns={defaultImagePos ? [[leftCol, rightCol]] : [[rightCol, leftCol]]} className={className} />
   );
 };
 

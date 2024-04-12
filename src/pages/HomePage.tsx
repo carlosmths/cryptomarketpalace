@@ -7,6 +7,7 @@ import { TopCryptocurrencies } from 'components/TopCryptocurrencies';
 import { ColumnControl } from 'components/ColumnControl';
 import BgHeroHomeImg from 'assets/bg-hero-home.jpeg';
 import Web3Img from 'assets/web3.png';
+import { Button, ButtonVariant } from 'components/Button';
 
 const HomePage: React.FC = () => {
   return (
@@ -21,7 +22,6 @@ const HomePage: React.FC = () => {
       <section className="bg-arrow-right font-display">
         <Container>
           <ColumnControl
-            centerContent
             columns={[
               [
                 <>
@@ -108,6 +108,28 @@ const HomePage: React.FC = () => {
                 answer:
                   "To ensure the security of your cryptocurrencies, it's essential to follow best practices such as using secure wallets, enabling two-factor authentication, keeping your private keys safe, and being cautious of phishing scams and fraudulent schemes. Additionally, staying informed about security updates and advancements in the cryptocurrency space is crucial.",
               },
+            ]}
+          />
+        </Container>
+      </section>
+      <section className="bg-indigo-50">
+        <Container>
+          <ColumnControl
+            columns={[
+              [
+                <h3>Start Trading Cryptocurrencies Today</h3>,
+                <>
+                  <p>Join our platform and experience seamless cryptocurrency trading with advanced features.</p>
+                  <div>
+                    <Button href="#" className="inline-flex mr-4">
+                      Sign Up
+                    </Button>
+                    <Button href="#" className="inline-flex" variant={ButtonVariant.secondary}>
+                      Learn More
+                    </Button>
+                  </div>
+                </>,
+              ],
             ]}
           />
         </Container>

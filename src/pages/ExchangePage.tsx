@@ -102,7 +102,7 @@ const ExchangePage: React.FC = () => {
           />
         </Container>
       </section>
-      <section className="bg-teal-50">
+      <section className="bg-indigo-50">
         <Container>
           <div className="max-w-xl mx-auto text-center">
             <p className="subheading">Get Help</p>
