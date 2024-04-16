@@ -42,7 +42,7 @@ const Header: React.FC = () => {
           className={classNames(
             'navigation-container ml-auto gap-6 lg:flex',
             isMenuOpen
-              ? 'flex absolute w-[min(20rem,calc(100vw-theme(spacing.10)))] h-screen flex-col top-0 right-0 bg-white items-start p-4 z-10'
+              ? 'flex absolute w-[min(20rem,calc(100vw-theme(spacing.10)))] h-screen flex-col top-0 right-0 bg-white items-start p-4 z-40'
               : 'hidden items-center'
           )}>
           <MainLogo className={classNames(isMenuOpen ? 'h-14' : 'hidden')} iconOnly />
