@@ -2,6 +2,7 @@ import { Container } from 'components/Container';
 import { MainLogo } from 'components/MainLogo';
 import { NewsLetterForm } from 'components/NewsLetterForm';
 import { SocialMedia } from 'components/SocialMedia';
+import { Link } from 'react-router-dom';
 import { Theme } from 'types/sharedTypes';
 
 const Footer: React.FC = () => {
@@ -34,9 +35,9 @@ const Footer: React.FC = () => {
           </p>
           <p>
             For more information about this project, please contact:
-            <a className="font-bold ml-1" href="mailto:carlosmths@gmail.com">
+            <Link className="font-bold ml-1" to="mailto:carlosmths@gmail.com">
               carlosmths@gmail.com
-            </a>
+            </Link>
           </p>
         </div>
       </Container>

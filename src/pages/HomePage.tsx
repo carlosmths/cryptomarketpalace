@@ -17,7 +17,9 @@ const HomePage: React.FC = () => {
         subtitle="Buy and sell cryptocurrencies hassle-free with our user-friendly platform."
         backgroundImageUrl={BgHeroHomeImg}
         primaryCta="Sign Up"
+        primaryCtaLink="/register"
         secondaryCta="Learn More"
+        secondaryCtaLink="/resources"
       />
       <section className="bg-arrow-right font-display">
         <Container>
@@ -121,10 +123,10 @@ const HomePage: React.FC = () => {
                 <>
                   <p>Join our platform and experience seamless cryptocurrency trading with advanced features.</p>
                   <div>
-                    <Button href="#" className="inline-flex mr-4">
+                    <Button href="/register" className="inline-flex mr-4">
                       Sign Up
                     </Button>
-                    <Button href="#" className="inline-flex" variant={ButtonVariant.secondary}>
+                    <Button href="/resources" className="inline-flex" variant={ButtonVariant.secondary}>
                       Learn More
                     </Button>
                   </div>

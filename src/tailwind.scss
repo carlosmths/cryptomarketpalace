@@ -218,6 +218,12 @@
     margin: 0;
   }
 
+  .form {
+    a {
+      @apply text-purple-600 underline;
+    }
+  }
+
   @screen lg {
     html {
       @apply text-base;

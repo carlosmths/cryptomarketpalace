@@ -13,7 +13,9 @@ interface HeroProps {
   subtitle: string;
   backgroundImageUrl: string;
   primaryCta?: string;
+  primaryCtaLink?: string;
   secondaryCta?: string;
+  secondaryCtaLink?: string;
   variant?: HeroVariant;
 }
 
@@ -22,7 +24,9 @@ const Hero: React.FC<HeroProps> = ({
   subtitle,
   backgroundImageUrl,
   primaryCta,
+  primaryCtaLink,
   secondaryCta,
+  secondaryCtaLink,
   variant = HeroVariant.fullHeight,
 }) => {
   const isSimpleVariant = variant === HeroVariant.simple;
@@ -48,12 +52,12 @@ const Hero: React.FC<HeroProps> = ({
           {(primaryCta || secondaryCta) && (
             <div className="buttons flex gap-4 items-center">
               {primaryCta && (
-                <Button theme={Theme.dark} href="#">
+                <Button theme={Theme.dark} href={primaryCtaLink}>
                   {primaryCta}
                 </Button>
               )}
               {secondaryCta && (
-                <Button theme={Theme.dark} variant={ButtonVariant.secondary} href="#">
+                <Button theme={Theme.dark} variant={ButtonVariant.secondary} href={secondaryCtaLink}>
                   {secondaryCta}
                 </Button>
               )}

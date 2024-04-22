@@ -1,7 +1,8 @@
 import { Page } from 'components/Page';
 import { ExchangePage } from 'pages/ExchangePage';
 import { HomePage } from 'pages/HomePage';
-import { JobsListingPage } from 'pages/JobsListingPage';
+import { LoginPage } from 'pages/LoginPage';
+import { RegisterPage } from 'pages/RegisterPage';
 import { ResourcesPage } from 'pages/ResourcesPage';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -31,12 +32,12 @@ const RouterConfig = createBrowserRouter([
     ),
   },
   {
-    path: '/jobs',
-    element: (
-      <Page title="Jobs">
-        <JobsListingPage />
-      </Page>
-    ),
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
   },
 ]);
 

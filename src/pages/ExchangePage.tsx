@@ -36,8 +36,8 @@ const ExchangePage: React.FC = () => {
                   <p className="subheading">Simplified</p>
                   <h2>Easy Steps to Buy and Sell Cryptocurrencies</h2>
                   <div className="flex">
-                    <Button href="#">Get Started</Button>
-                    <Button href="#" variant={ButtonVariant.next}>
+                    <Button href="/register">Get Started</Button>
+                    <Button href="/resources" variant={ButtonVariant.next}>
                       Learn More
                     </Button>
                   </div>

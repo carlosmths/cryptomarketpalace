@@ -50,10 +50,10 @@ const Header: React.FC = () => {
           <Navigation className={classNames({ 'flex-col': isMenuOpen })} onLinkClick={closeMenu} />
           <hr className={classNames(isMenuOpen ? 'block' : 'hidden', 'w-full')} />
           <div className={classNames({ 'flex-col w-full': isMenuOpen }, 'flex gap-4')}>
-            <Button href="#" onClick={closeMenu}>
-              Login
+            <Button href="/login" onClick={closeMenu}>
+              Log In
             </Button>
-            <Button href="#" onClick={closeMenu} variant={ButtonVariant.secondary}>
+            <Button href="/register" onClick={closeMenu} variant={ButtonVariant.secondary}>
               Sign Up
             </Button>
           </div>

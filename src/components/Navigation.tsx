@@ -12,7 +12,6 @@ const Navigation: React.FC<NavigationProps> = ({ onLinkClick, className }) => {
     ['Home', '/'],
     ['Exchange', '/exchange'],
     ['Resources', '/resources'],
-    ['Jobs', '/jobs'],
   ];
 
   return (

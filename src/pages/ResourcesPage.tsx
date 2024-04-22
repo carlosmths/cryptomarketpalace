@@ -164,7 +164,7 @@ const ResourcesPage: React.FC = () => {
               </div>
             </div>
             <div className="flex">
-              <Button href="#">Get Started</Button>
+              <Button href="/register">Get Started</Button>
               <Button href="#" variant={ButtonVariant.next}>
                 Learn More
               </Button>
