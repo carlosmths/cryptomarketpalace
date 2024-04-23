@@ -10,9 +10,14 @@ const Header: React.FC = () => {
   const BREAKPOINT_LG = 1024;
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuOnClick = () => setIsMenuOpen(!isMenuOpen);
+  const setMenuState = (isOpen: boolean) => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    setIsMenuOpen(isOpen);
+  };
 
-  const closeMenu = () => setIsMenuOpen(false);
+  const menuOnClick = () => setMenuState(!isMenuOpen);
+
+  const closeMenu = () => setMenuState(false);
 
   React.useEffect(() => {
     const mm = window.matchMedia(`(min-width: ${BREAKPOINT_LG}px)`);
@@ -37,7 +42,8 @@ const Header: React.FC = () => {
               ? 'absolute inset-0 bg-slate-900/25 backdrop-blur-sm transition-opacity opacity-100 w-screen h-screen z-40'
               : 'hidden',
             'backdrop'
-          )}></div>
+          )}
+          onClick={closeMenu}></div>
         <div
           className={classNames(
             'navigation-container ml-auto gap-6 lg:flex',
